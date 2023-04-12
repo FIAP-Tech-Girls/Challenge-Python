@@ -129,12 +129,24 @@ if (opcaoEntrevista == "Sim") or (opcaoEntrevista == "sim"):
             reacaoTransito = input("Digite aqui como você costuma reagir ao trânsito. Sinta-se livre: ")
 
         case _:
-            print("Opção inválida. Por favor, tente novamente.")
+            print("Opção inválida. Por favor, reinicie e tente novamente.")
 
 elif (opcaoEntrevista == "Não") or (opcaoEntrevista == "não"):
     print("Agradecemos a atenção!")
     print(f"{nome}, você deseja explorar outro menu de opções?")
-    # Em construção.
+    
+    print("1 - Sim")
+    print("2 - Não")
+
+    opcaoMenu = int(input("Digite a opção escolhida: "))
+
+    match opcaoMenu:
+        case 1:
+            print("Implementações inseridas posteriormente")
+        case 2:
+            print("Implementações inseridas posteriormente")
+        case _:
+            print("Opção inválida. Por favor, reinicie e tente novamente.")
 
 else:
     print("Opção inválida. Por favor, tente novamente.")
