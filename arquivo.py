@@ -7,7 +7,8 @@ nome = input("Qual o seu nome? Informe aqui: ")
 # Perguntas iniciais, que determinam a primeira interação da IA com o usuário
 
 print(f"{nome}, nessa primeira parte, é uma entrevista sobre trânsito. Você gostaria de participar?")
-print("Para participar da entrevista, digite Sim. \n Para não participar da entrevista digite Não")
+print("Para participar da entrevista, digite Sim.")
+print("Para não participar da entrevista digite Não")
 
 opcaoEntrevista = input("Informe a opção, conforme o menu: ")
 
@@ -91,7 +92,41 @@ if (opcaoEntrevista == "Sim") or (opcaoEntrevista == "sim"):
 
         # Caso a opção seja de não dirigir
         case 2: 
-            print("Perguntas aqui")
+            print("Qual meio de transporte você mais utiliza? Veja no menu de opções:")
+
+            print("1 - Uber/Táxi")
+            print("2 - Carona (amigos(as), marido/esposa, entre outros)")
+            print("3 - Transporte Público")
+
+            opcaoTransporte = int(input("Digite aqui a opção escolhida: "))
+
+            print("Em qual período você costuma sair?")
+
+            print("1 - Manhã.")
+            print("2 - Tarde.")
+            print("3 - Noite.")
+
+            periodoSair = int(input("Digite aqui a opção escolhida: "))
+
+            print("Nesse período, você pega muito trânsito?")
+
+            print("1 - Sim")
+            print("2 - Não")
+
+            transito = int(input("Digite aqui a opção escolhida: "))
+
+            if transito == 2:
+                print("Em qual período você costuma pegar mais trânsito?")
+
+                print("1 - Manhã.")
+                print("2 - Tarde.")
+                print("3 - Noite.")
+
+                periodoTransito = int(input("Digite aqui a opção escolhida: "))
+
+            print("Como você costuma reagir ao trânsito?")
+
+            reacaoTransito = input("Digite aqui como você costuma reagir ao trânsito. Sinta-se livre: ")
 
         case _:
             print("Opção inválida. Por favor, tente novamente.")
