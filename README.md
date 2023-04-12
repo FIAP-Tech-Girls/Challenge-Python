@@ -1,4 +1,4 @@
-# Tiana, Inteligência Artificial.
+# Tiana, a Inteligência Artificial.
 ## O que é?
 Projeto de Python criado para a Challenge da @FIAP em parceria com a IBM para as aulas de Computational Thinking With Python.
 
@@ -6,5 +6,19 @@ Projeto de Python criado para a Challenge da @FIAP em parceria com a IBM para as
 
 Esse projeto está sendo construído por 4 programadoras, sendo elas:
 
-| [<img src="https://avatars.githubusercontent.com/u/80417466?v=4" width=115><br><sub>Leticia Resina</sub>](https://github.com/letyresina) | [<img src="https://avatars.githubusercontent.com/u/82532010?v=4" width=115><br><sub>Gustavo Pereira</sub>](https://github.com/PereiraGus) |
-| :---: | :---: | :---: 
+<a href="https://github.com/anny-dias">Anny Diaz</a>
+<a href="https://github.com/camilapadalino">Camila Padalino</a>
+<a href="https://github.com/letyresina">Leticia Resina</a>
+<a href="https://github.com/Luanacabezaolias">Luana Cabeazolias</a>
+
+## Quais são as funcionalidades?
+
+A Inteligência artificial que busca ser o mais humanizado possível para a melhor experiência do usuário. Inicialmente, são feitas perguntas iniciais, que questionam o nome da pessoa (onde a interação será feita com o nome da pessoa), e pergunta se ela deseja participar ou não sobre a pesquisa sobre o trânsito. Caso a pessoa não deseja participar, nos sprints futuros, serão implementados:
+
+<ul>
+<li>Reportar algum problema em alguma avenida, cidade, que não foi encontrado pelo nosso sistema arduíno (citado posteriormente);</li>
+<li>Perguntar sobre a situação de alguma cidade/avenida que deseja passar (se está congestionada, com acidentes, entre outros);</li>
+<li>Perguntar rotas alternativas, onde o trânsito é pequeno ou inexistente para evitar o congestionamento.</li>
+</ul>
+
+
