@@ -39,7 +39,7 @@ if (opcaoEntrevista == "Sim") or (opcaoEntrevista == "sim"):
             print("1 - Dirijo mais a trabalho.")
             print("2 - Dirijo mais a diversão.")
 
-            opcaoDirige = int("Digite aqui a opção escolhida: ")
+            opcaoDirige = int(input("Digite aqui a opção escolhida: "))
 
             # Para saber mais sobre o que a pessoa trabalha 
             if opcaoDirige == 1:
@@ -50,6 +50,7 @@ if (opcaoEntrevista == "Sim") or (opcaoEntrevista == "sim"):
                 print("3 - Outro.")
 
                 opcaoTrabalho = int(input("Digite aqui a opção escolhida: "))
+
                 if opcaoTrabalho == 3:
                     outroTrabalho = input("Informe qual o trabalho que você utiliza seu automóvel: ")
             
@@ -58,7 +59,7 @@ if (opcaoEntrevista == "Sim") or (opcaoEntrevista == "sim"):
             print("1 - Dirijo mais sozinho.")
             print("2 - Dirijo mais acompanhado.")
 
-            sozinhoouacompanhado = int("Digite aqui a opção escolhida: ")
+            sozinhoouacompanhado = int(input("Digite aqui a opção escolhida: "))
 
             print("Em qual período você costuma dirigir com mais frequência?")
 
@@ -66,7 +67,7 @@ if (opcaoEntrevista == "Sim") or (opcaoEntrevista == "sim"):
             print("2 - Tarde.")
             print("3 - Noite.")
 
-            periodo = int("Digite aqui a opção escolhida: ")
+            periodo = int(input("Digite aqui a opção escolhida: "))
 
             print("Nesse período, você pega muito trânsito?")
 
@@ -82,7 +83,7 @@ if (opcaoEntrevista == "Sim") or (opcaoEntrevista == "sim"):
                 print("2 - Tarde.")
                 print("3 - Noite.")
 
-                periodoTransito = int("Digite aqui a opção escolhida: ")
+                periodoTransito = int(input("Digite aqui a opção escolhida: "))
 
             print("Como você costuma reagir ao trânsito?")
 
