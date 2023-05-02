@@ -12,7 +12,12 @@ def menuOpcoes():
 while True:
     opcao = menuOpcoes()
     if opcao == 1:
-        print(f"Inserir a entrevista aqui!")
+        print(f"{nome}, para prosseguirmos com a entrevista, você dirige?")
+
+        print("Digite 1 para sim \n Digite 2 para não")
+
+        opcaoDirigir = int(input("Digite a opção escolhida: "))
+        
     elif opcao == 2:
         print("Implementações inseridas posteriormente")
     elif opcao == 3:
