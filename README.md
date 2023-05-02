@@ -24,5 +24,6 @@ A Inteligência artificial que busca ser o mais humanizado possível para a melh
 ## Versões 
 
 <ul>
-<li>Versão 1.0: Último commit feito no dia 11 de abril de 2023, essa versão conta com uma saudação padrão da IA, que logo em seguida questiona se o usuário deseja ou não participar da entrevista, trabalhando com ifs e elses. E por fim, agradece o usuário por participar da entrevista e deixou espaço para mais implementações futuras </li>
+<li>Versão 1.0: Último commit feito no dia 11 de abril de 2023. Essa versão conta com uma saudação padrão da IA, que logo em seguida questiona se o usuário deseja ou não participar da entrevista, trabalhando com ifs e elses. E por fim, agradece o usuário por participar da entrevista e deixou espaço para mais implementações futuras </li>
+<li>Versão 2.0: Último commit feito no dia [inserir depois] de 2023. Essa versão conta com uma função de menu de opções, para facilitar a execução do programa.</li>
 </ul>
