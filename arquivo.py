@@ -21,7 +21,9 @@ while True:
         match opcaoDirigir:
 
             case 1:
-                print(f"Inserir aqui a entrevista caso a pessoa dirija")
+
+                print(f"Inserir aqui a entrevista caso a pessoa dirija com melhorias (estudar em casa)")
+
             case 2:
 
                 print("Qual meio de transporte você utiliza com mais frequência? Veja no menu de opções:")
