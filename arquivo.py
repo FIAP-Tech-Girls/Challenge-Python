@@ -9,4 +9,18 @@ def menuOpcoes():
     opcao = int(input("Por favor, informe uma opção: "))
     return opcao
 
-
+while True:
+    opcao = menuOpcoes()
+    if opcao == 1:
+        print(f"Inserir a entrevista aqui!")
+    elif opcao == 2:
+        print("Implementações inseridas posteriormente")
+    elif opcao == 3:
+        print("Implementações inseridas posteriormente")
+    elif opcao == 4:
+        print("Implementações inseridas posteriormente")
+    elif opcao == 5:
+        print(f"{nome}, obrigada por utilizar a Tiana!")
+        break
+    else:
+        print("Desculpe... Não entendi. Acredito que você inseriu uma opção inválida. Por favor, tente novamente!")
