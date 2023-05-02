@@ -18,7 +18,8 @@ A Inteligência artificial que busca ser o mais humanizado possível para a melh
 <ul>
 <li>Reportar algum problema em alguma avenida, cidade, que não foi encontrado pelo nosso sistema arduíno (citado posteriormente);</li>
 <li>Perguntar sobre a situação de alguma cidade/avenida que deseja passar (se está congestionada, com acidentes, entre outros);</li>
-<li>Perguntar rotas alternativas, onde o trânsito é pequeno ou inexistente para evitar o congestionamento.</li>
+<li>Perguntar rotas alternativas, onde o trânsito é pequeno ou inexistente para evitar o congestionamento;</li>
+<li>Quando houver a integração com Login, armazenamento de rotas favoritas para fácil acesso do usuário.</li>
 </ul>
 
 ## Versões 

@@ -5,7 +5,7 @@ nome = input("Qual o seu nome? Informe aqui: ")
 # Função de menu de opções
 def menuOpcoes():
     print(f"{nome}, seja bem-vindo(a) novamente! Para prosseguir nossa conversa, selecione uma opção abaixo:")
-    print(f"\n 1 - Participar da entrevista sobre trânsito \n 2 - Reportar algum problema em alguma via \n 3 - Saber a situação de alguma via \n 4 - Rotas alternativas para um mesmo destino \n 5 - Encerrar a IA")
+    print(f"\n 1 - Participar da entrevista sobre trânsito \n 2 - Reportar algum problema em alguma via \n 3 - Saber a situação de alguma via \n 4 - Rotas alternativas para um mesmo destino \n 5 - Ver rotas favoritas \n 6 - Encerrar a conversa")
     opcao = int(input("Por favor, informe uma opção: "))
     return opcao
 
@@ -14,7 +14,7 @@ while True:
     if opcao == 1:
         print(f"{nome}, para prosseguirmos com a entrevista, você dirige?")
 
-        print("Digite 1 para sim \n Digite 2 para não")
+        print("\n Digite 1 para sim \n Digite 2 para não")
 
         opcaoDirigir = int(input("Por favor, informe uma opção: "))
 
@@ -34,6 +34,8 @@ while True:
     elif opcao == 4:
         print("Implementações inseridas posteriormente")
     elif opcao == 5:
+        print("Implementações inseridas posteriormente")
+    elif opcao == 6:
         print(f"{nome}, obrigada por utilizar a Tiana!")
         break
     else:
