@@ -16,8 +16,17 @@ while True:
 
         print("Digite 1 para sim \n Digite 2 para não")
 
-        opcaoDirigir = int(input("Digite a opção escolhida: "))
-        
+        opcaoDirigir = int(input("Por favor, informe uma opção: "))
+
+        match opcaoDirigir:
+
+            case 1:
+                print(f"Inserir aqui a entrevista caso a pessoa dirija")
+            case 2:
+                print(f"Inserir aqui a entrevista caso a pessoa não dirija")
+            case _:
+                print(f"Opção inserida inválida. Por favor, reinicie e tente novamente!")
+
     elif opcao == 2:
         print("Implementações inseridas posteriormente")
     elif opcao == 3:
