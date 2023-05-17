@@ -8,7 +8,20 @@ def menuOpcoes():
     print(f"\n 1 - Participar da entrevista sobre trânsito \n 2 - Reportar algum problema em alguma via \n 3 - Saber a situação de alguma via \n 4 - Rotas alternativas para um mesmo destino \n 5 - Ver rotas favoritas \n 6 - Encerrar a conversa \n")
     opcao = int(input("Por favor, informe uma opção: "))
     return opcao
-            
+
+
+# Função que pegaria a quantidade de veiculos do usuário e jogaria numa lista
+def veiculosDirige(veiculos):
+    listaVeiculos = []
+    for i in range (veiculos):
+        print("Exemplo de tipo de veículo: carro, moto, caminhonete...")
+        print("Por favor, digite um por vez!")
+        veiculo = input("Digite o tipo de veículo: ")
+        listaVeiculos.append(veiculo)
+        i += 1
+    print(f"Os tipos digitados foram: {listaVeiculos}")
+
+    
 while True:
     opcao = menuOpcoes()
     if opcao == 1:
@@ -22,7 +35,69 @@ while True:
 
             case 1:
 
-                print(f"Inserir aqui a entrevista caso a pessoa dirija com melhorias (estudar em casa)")
+                print("Qual a quantidade de tipo de veículos que você dirige?")
+                print("Como exemplo: digite 1, caso dirija somente um tipo, digite 2, caso dirija somente dois tipos. Digite apenas o número!")
+
+                veiculos = int(input("Informe a quantidade de veículos aqui: "))
+                veiculosDirige(veiculos)
+
+                print("Qual a categoria da sua CNH?")
+                categoriaCNH = input("Digite aqui a categoria: ")
+
+                print("Você dirige com mais frequência a trabalho ou a diversão (sozinho, com sua família, amigos, entre outros?) Veja no menu de opções:")
+
+                print("1 - Dirijo mais a trabalho.")
+                print("2 - Dirijo mais a diversão.")
+
+                opcaoDirige = int(input("Digite aqui a opção escolhida: "))
+
+                # Para saber mais sobre o que a pessoa trabalha 
+                if opcaoDirige == 1:
+                    print("Para qual trabalho você mais utiliza seu veículo?")
+
+                    print("1 - Uber/Táxi")
+                    print("2 - Entregador")
+                    print("3 - Outro.")
+
+                    opcaoTrabalho = int(input("Digite aqui a opção escolhida: "))
+
+                    if opcaoTrabalho == 3:
+                        outroTrabalho = input("Informe qual o trabalho que você utiliza seu automóvel: ")
+                
+                print("Você dirige com mais frequência sozinho ou acompanhado?")
+
+                print("1 - Dirijo mais sozinho.")
+                print("2 - Dirijo mais acompanhado.")
+
+                sozinhoouacompanhado = int(input("Digite aqui a opção escolhida: "))
+
+                print("Em qual período você costuma dirigir com mais frequência?")
+
+                print("1 - Manhã.")
+                print("2 - Tarde.")
+                print("3 - Noite.")
+
+                periodo = int(input("Digite aqui a opção escolhida: "))
+
+                print("Nesse período, você pega muito trânsito?")
+
+                print("1 - Sim")
+                print("2 - Não")
+
+                transito = int(input("Digite aqui a opção escolhida: "))
+
+                if transito == 2:
+                    print("Em qual período você costuma pegar mais trânsito?")
+
+                    print("1 - Manhã.")
+                    print("2 - Tarde.")
+                    print("3 - Noite.")
+
+                    periodoTransito = int(input("Digite aqui a opção escolhida: "))
+
+                print("Como você costuma reagir ao trânsito?")
+
+                reacaoTransito = input("Sinta-se livre para escrever como se sente, num limite de até 1000 caracteres: ")
 
             case 2:
 
