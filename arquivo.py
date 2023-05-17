@@ -5,7 +5,7 @@ nome = input("Qual o seu nome? Informe aqui: ")
 # Função de menu de opções
 def menuOpcoes():
     print(f"{nome}, seja bem-vindo(a) novamente! Para prosseguir nossa conversa, selecione uma opção abaixo:")
-    print(f"\n 1 - Participar da entrevista sobre trânsito \n 2 - Reportar algum problema em alguma via \n 3 - Saber a situação de alguma via \n 4 - Rotas alternativas para um mesmo destino \n 5 - Ver rotas favoritas \n 6 - Encerrar a conversa \n")
+    print(f"\n 1 - Participar da entrevista sobre trânsito \n 2 - Reportar trânsito ou acidente em uma rota \n 3 - Saber a situação de alguma via \n 4 - Rotas alternativas para um mesmo destino \n 5 - Ver rotas favoritas \n 6 - Encerrar a conversa \n")
     opcao = int(input("Por favor, informe uma opção: "))
     return opcao
 
@@ -73,25 +73,20 @@ while True:
 
                 print("Em qual período você costuma dirigir com mais frequência?")
 
-                print("1 - Manhã.")
-                print("2 - Tarde.")
-                print("3 - Noite.")
+                print("\n 1 - Manhã \n 2 - Tarde \n 3 - Noite \n ")
 
                 periodo = int(input("Digite aqui a opção escolhida: "))
 
                 print("Nesse período, você pega muito trânsito?")
 
-                print("1 - Sim")
-                print("2 - Não")
+                print("\n 1 - Sim \n 2 - Não \n")
 
                 transito = int(input("Digite aqui a opção escolhida: "))
 
                 if transito == 2:
                     print("Em qual período você costuma pegar mais trânsito?")
 
-                    print("1 - Manhã.")
-                    print("2 - Tarde.")
-                    print("3 - Noite.")
+                    print("\n 1 - Manhã \n 2 - Tarde \n 3 - Noite \n ")
 
                     periodoTransito = int(input("Digite aqui a opção escolhida: "))
 
@@ -132,7 +127,18 @@ while True:
                 print(f"Opção inserida inválida. Por favor, reinicie e tente novamente!")
 
     elif opcao == 2:
-        print("Implementações inseridas posteriormente")
+
+        print(f"{nome}, qual é a rua, avenida ou rota que você gostaria de reportar um problema?")
+        print("Informe o nome por extenso, como exemplo: Avenida Paulista")
+        rotaProblema = input("Informe aqui: ")
+        print("Qual é o problema? Um acidente ou trânsito?")
+        problema = input("Informe aqui: ")
+
+        # Quando informado esse problema, iria repassar para todos os usuários que estariam nessa rota ou procurassem sobre
+
+        print(f"{nome}, a IA Tiana agradece sua contribuição! Será repassado para os demais usuários!")
+        print("Caso esteja nessa rota, para rotas alternativas, veja o menu de opções!")
+
     elif opcao == 3:
         print("Implementações inseridas posteriormente")
     elif opcao == 4:
