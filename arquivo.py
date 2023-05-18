@@ -5,7 +5,7 @@ nome = input("Qual o seu nome? Informe aqui: ")
 # Função de menu de opções
 def menuOpcoes():
     print(f"{nome}, seja bem-vindo(a) novamente! Para prosseguir nossa conversa, selecione uma opção abaixo:")
-    print(f"\n 1 - Participar da entrevista sobre trânsito \n 2 - Reportar trânsito ou acidente em uma rota \n 3 - Saber a situação de alguma via \n 4 - Rotas alternativas para um mesmo destino \n 5 - Ver rotas favoritas \n 6 - Encerrar a conversa \n")
+    print(f"\n 1 - Participar da entrevista sobre trânsito \n 2 - Reportar trânsito ou acidente em uma rota \n 3 - Saber a situação de alguma via \n 4 - Rotas alternativas para um mesmo destino \n 5 - Ver/Adicionar rotas favoritas \n 6 - Encerrar a conversa \n")
     opcao = int(input("Por favor, informe uma opção: "))
     return opcao
 
@@ -21,6 +21,16 @@ def veiculosDirige(veiculos):
         i += 1
     print(f"Os tipos digitados foram: {listaVeiculos}")
 
+# Função que simula roda favorita do usuário (isso mudará posteriormente)
+def rotasFavoritas(rotas):
+    listaRotas = []
+    for i in range(rotas):
+        print("Digite qual rota você deseja inserir em sua favorita!")
+        print("Por favor, digite um por vez!")
+        rotaFav = input("Digite a rota favorita aqui: ")
+        listaRotas.append(rotaFav)
+        i += 1
+    return listaRotas
     
 while True:
     opcao = menuOpcoes()
@@ -144,7 +154,18 @@ while True:
     elif opcao == 4:
         print("Implementações inseridas posteriormente")
     elif opcao == 5:
-        print("Implementações inseridas posteriormente")
+        # Essa implementação simula a implementação final correta!
+        rotas = int(input("Informe a quantidade de rotas favoritas que deseja inserir aqui (somente o número por favor) aqui: "))
+        rotasFav = rotasFavoritas(rotas)
+
+        print("Deseja ver quais rotas são suas favoritas? Digite 1 para sim e 2 para não")
+        verRota = int(input("Digite aqui a opção escolhida: "))
+
+        if verRota == 1:
+            print(f"As suas rotas favoritas foram: {rotasFav}")
+        else:
+            print("Continua com o menu!")
+
     elif opcao == 6:
         print(f"{nome}, obrigada por utilizar a Tiana!")
         break
