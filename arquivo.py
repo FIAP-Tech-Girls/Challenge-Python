@@ -79,7 +79,7 @@ while True:
         # Opção para entrevista para levantamento de dados sobre o trânsito.
         print(f"{apelido}, para prosseguirmos com a sua entrevista, por favor, informe-nos")
         print("Você dirige? \n 1 - Sim \n 2 - Não")
-        opcaoEntrevista = int(input("Digite aqui a opção escolhida: "))
+        opcaoEntrevista = input("Digite aqui a opção escolhida: ")
 
         match opcaoEntrevista:
 
@@ -185,7 +185,7 @@ while True:
             case _:
                 print("Opção inválida. Tente novamente!")
 
-        print("Agradecemos por suas respostas!")
+        print(f"Agradecemos por suas respostas {apelido}!")
     
     elif opcao == 2:
         # Opção para ver situação sobre determinada rota
@@ -193,7 +193,34 @@ while True:
 
     elif opcao == 3:
         # Opção para dar feedback sobre um determinado caminho
-        print("Em breve")
+        print(f"Qual é o caminho que você deseja dar feedback, {apelido}?")
+        caminho = input("Digite aqui: ")
+        print(f"Qual o problema com o {caminho}? Selecione uma opção abaixo:")
+        print(f"\n 1 - Reportar acidente; \n 2 - Reportar congestionamento \n 3 - Outro")
+
+        try:
+            feedbackCaminho = int(input("Informe a opção desejada: "))
+            if (feedbackCaminho < 1) or (feedbackCaminho > 3):
+                raise TypeError
+            
+            if feedbackCaminho == 1:
+                print(f"{apelido}, agradecemos pelo seu aviso! Iremos avisar os demais usuários!")
+                time.sleep(1)
+            elif feedbackCaminho == 2:
+                print(f"{apelido}, agradecemos pelo seu aviso! Iremos avisar os demais usuários!")
+                time.sleep(1)
+            elif feedbackCaminho == 3:
+                feedbackOutro = input("Conte-nos com detalhe sobre o que aconteceu: ")
+                time.sleep(1)
+                print(f"{apelido}, agradecemos pelo seu feedback! Iremos avisar os demais usuários!")
+                time.sleep(1)
+
+        except ValueError:
+            print("Por favor, informe somente números dentre as opções disponíveis!")
+            time.sleep(1)
+        except TypeError:
+            ("Por favor, digite uma opção válida para prosseguir.")
+            time.sleep(1)
 
     elif opcao == 4:
         # Opção para ver caminhos alternativos para determinado destino
