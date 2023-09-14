@@ -74,14 +74,6 @@ while True:
         print("Você dirige? \n 1 - Sim \n 2 - Não")
         opcaoEntrevista = int(input("Digite aqui a opção escolhida: "))
 
-        match opcaoEntrevista:
-
-            case 1:
-                print("Em breve")
-            case 2:
-                print("Em breve")
-            case _:
-                print("Em breve")
 
     elif opcao == 2:
         # Opção para ver situação sobre determinada rota
@@ -97,7 +89,10 @@ while True:
         print("Em breve")
     elif opcao == 6:
         # Opção para feedback sobre a Tiana
-        print("Em breve")
+        print(f"{apelido} sua opinião é muito importante para nós! Escreva sua avaliação que iremos receber, ler e aprimorar.")
+        feedbackTiana = input("Digite seu feedback \n")
+        time.sleep(1)
+        print("Agradecemos a sua avaliação e preferência! Conte sempre com a gente!")
     elif opcao == 7:
         # Opção para encerrar a Tiana
         print(f"{apelido}, agradecemos por utilizar a Tiana!")
