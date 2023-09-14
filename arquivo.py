@@ -46,3 +46,31 @@ def menuOpcoes():
     print(f"\n 1 - Participar da entrevista de qualificação do trânsito; \n 2 - Ver situação de determinada rota; \n 3 - Feedback sobre determinada rota; \n 4 - Rotas alternativas para um destino; \n 5 - Favoritar uma rota \n 6 - Feedback sobre aplicativo; \n 7 - Encerrar Tiana.")
     opcao = int(input("Informe a opção desejada: "))
     return opcao
+
+# Programa principal
+
+cadastroUsuario = cadastro()
+
+time.sleep(1)
+
+print(f"{apelido}, seja bem-vindo(a) à Tiana. Como podemos te ajudar hoje?")
+
+time.sleep(1)
+
+while True:
+    opcao = menuOpcoes()
+    if opcao == 1:
+        print("Em breve")
+    elif opcao == 2:
+        print("Em breve")
+    elif opcao == 3:
+        print("Em breve")
+    elif opcao == 4:
+        print("Em breve")
+    elif opcao == 5:
+        print("Em breve")
+    elif opcao == 6:
+        print("Em breve")
+    elif opcao == 7:
+        print(f"{apelido}, agradecemos por utilizar a Tiana!")
+        break
