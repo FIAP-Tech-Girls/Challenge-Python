@@ -18,8 +18,8 @@ def cadastro():
     
     global apelido # deixa global para poder utilizar o apelido durante todo sistema.
 
-    nome = input("Digite seu nome completo: ")
-    apelido = input("Digite como deseja ser chamado durante a nossa conversa: ")
+    nome = input("Digite seu nome completo: ").title()
+    apelido = input("Digite como deseja ser chamado durante a nossa conversa: ").title()
     email = input("Digite seu e-mail: ")
     senha = getpass.getpass("Digite sua senha (ela está ocultada pela sua segurança): ")
 
@@ -69,19 +69,36 @@ time.sleep(1)
 while True:
     opcao = menuOpcoes()
     if opcao == 1:
-        print(f"{apelido}, para prosseguirmos com a sua entrevista")
+        # Opção para entrevista para levantamento de dados sobre o trânsito.
+        print(f"{apelido}, para prosseguirmos com a sua entrevista, por favor, informe-nos")
+        print("Você dirige? \n 1 - Sim \n 2 - Não")
+        opcaoEntrevista = int(input("Digite aqui a opção escolhida: "))
+
+        match opcaoEntrevista:
+
+            case 1:
+                print("Em breve")
+            case 2:
+                print("Em breve")
+            case _:
+                print("Em breve")
+
     elif opcao == 2:
+        # Opção para ver situação sobre determinada rota
         print("Em breve")
     elif opcao == 3:
+        # Opção para dar feedback sobre um determinado caminho
         print("Em breve")
     elif opcao == 4:
+        # Opção para ver caminhos alternativos para determinado destino
         print("Em breve")
     elif opcao == 5:
+        # Opção para favoritar uma rota
         print("Em breve")
     elif opcao == 6:
+        # Opção para feedback sobre a Tiana
         print("Em breve")
     elif opcao == 7:
+        # Opção para encerrar a Tiana
         print(f"{apelido}, agradecemos por utilizar a Tiana!")
         break
-    else:
-        print("Desculpe... Não entendi. Acredito que você inseriu uma opção inválida. Por favor, tente novamente!")
