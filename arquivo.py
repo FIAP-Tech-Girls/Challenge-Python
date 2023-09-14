@@ -40,12 +40,21 @@ def cadastro():
 def menuOpcoes():
     '''
         Função utilizada para facilitar e deixar o código inteiro do sistema mais limpo para chamar 
-        o menu de opções, que se repete em todo looping.
+        o menu de opções, que se repete em todo looping. Há uma validação para evitar que erros aconteçam.
     '''
 
     print(f"\n 1 - Participar da entrevista de qualificação do trânsito; \n 2 - Ver situação de determinada rota; \n 3 - Feedback sobre determinada rota; \n 4 - Rotas alternativas para um destino; \n 5 - Favoritar uma rota \n 6 - Feedback sobre aplicativo; \n 7 - Encerrar Tiana.")
-    opcao = int(input("Informe a opção desejada: "))
-    return opcao
+    try:
+        opcao = int(input("Informe a opção desejada: "))
+        if (opcao < 1) or (opcao > 7):
+            raise TypeError
+        return opcao
+    except ValueError:
+        print("Por favor, informe somente números dentre as opções disponíveis!")
+        time.sleep(1)
+    except TypeError:
+        print("Por favor, digite uma opção válida para prosseguir.")
+        time.sleep(1)
 
 # Programa principal
 
@@ -60,7 +69,7 @@ time.sleep(1)
 while True:
     opcao = menuOpcoes()
     if opcao == 1:
-        print("Em breve")
+        print(f"{apelido}, para prosseguirmos com a sua entrevista")
     elif opcao == 2:
         print("Em breve")
     elif opcao == 3:
@@ -74,3 +83,5 @@ while True:
     elif opcao == 7:
         print(f"{apelido}, agradecemos por utilizar a Tiana!")
         break
+    else:
+        print("Desculpe... Não entendi. Acredito que você inseriu uma opção inválida. Por favor, tente novamente!")
