@@ -1,4 +1,10 @@
 # Tiana, a Inteligência Artificial.
+
+-> falar que tem que baixar o pip install
+bcrypt
+openrouteservice
+folium
+
 ## O que é?
 Projeto de Python criado para a Challenge da @FIAP em parceria com a IBM para as aulas de Computational Thinking With Python.
 
