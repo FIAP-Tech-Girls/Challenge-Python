@@ -8,6 +8,10 @@ folium
 ## O que é?
 Projeto de Python criado para a Challenge da @FIAP em parceria com a IBM para as aulas de Computational Thinking With Python.
 
+## Quero testar no meu PC, como fazer? Preciso instalar algo?
+
+- Insta
+
 ## Quem compõe esse projeto?
 
 Esse projeto está sendo construído por 4 programadoras, sendo elas:
