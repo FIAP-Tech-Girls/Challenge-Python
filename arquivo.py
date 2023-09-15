@@ -21,6 +21,8 @@ chaveAPI = '5b3ce3597851110001cf62480b2433fb93fa4bf4bcda5d0487e0ee7f' # futurame
 
 client = openrouteservice.Client(key=chaveAPI) # Inicializa o cliente OpenRouteService
 
+rotasFavoritas = []
+
 # Funções
 
 def cadastro():
@@ -56,10 +58,10 @@ def menuOpcoes():
         o menu de opções, que se repete em todo looping. Há uma validação para evitar que erros aconteçam.
     '''
 
-    print(f"\n 1 - Participar da entrevista de qualificação do trânsito; \n 2 - Ver situação de determinada rota; \n 3 - Feedback sobre determinada rota; \n 4 - Rotas alternativas para um destino; \n 5 - Favoritar uma rota \n 6 - Feedback sobre aplicativo; \n 7 - Encerrar Tiana.")
+    print(f"\n 1 - Participar da entrevista de qualificação do trânsito; \n 2 - Ver situação de determinada rota; \n 3 - Feedback sobre determinada rota; \n 4 - Rotas alternativas para um destino; \n 5 - Favoritar uma rota \n 6 - Visualizar rotas favoritas \n 7 - Feedback sobre aplicativo; \n 8 - Encerrar Tiana.")
     try:
         opcao = int(input("Informe a opção desejada: "))
-        if (opcao < 1) or (opcao > 7):
+        if (opcao < 1) or (opcao > 8):
             raise TypeError
         return opcao
     except ValueError:
@@ -258,16 +260,30 @@ while True:
             print("Não foi possível encontrar uma rota.")
 
     elif opcao == 5:
-        # Opção para favoritar uma rota
-        print("Em breve")
+        # Opção para favoritar uma rota -> aprimorar futuramente
+        rotaFavorita = input("Informe a rota/ponto de partida/origem favorito: ")
+        rotasFavoritas.append(rotaFavorita)
+        time.sleep(1)
+        print("Para visualizar suas rotas favoritas, utilize a opção 6, no menu!")
+        time.sleep(1)
 
     elif opcao == 6:
+        # Opção para visualizar rotas favoritas -> aprimorar futuramente
+        if rotasFavoritas == []:
+            print("Não há rotas favoritas! Que tal adicionar? Informe-nos na opção 5!")
+            time.sleep(1)
+        else:
+            print(f"Suas rotas favoritas são {rotasFavoritas}")
+            time.sleep(1)
+
+    elif opcao == 7:
         # Opção para feedback sobre a Tiana
         print(f"{apelido} sua opinião é muito importante para nós! Escreva sua avaliação que iremos receber, ler e aprimorar.")
         feedbackTiana = input("Digite seu feedback \n")
         time.sleep(1)
         print("Agradecemos a sua avaliação e preferência! Conte sempre com a gente!")
-    elif opcao == 7:
+
+    elif opcao == 8:
         # Opção para encerrar a Tiana
         print(f"{apelido}, agradecemos por utilizar a Tiana!")
         break
