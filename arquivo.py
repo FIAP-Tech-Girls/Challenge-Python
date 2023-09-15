@@ -1,3 +1,12 @@
+# Imports necessários para a aplicação
+
+import time # intervalo de tempo para o usuário poder visualizar e processar as informações
+import getpass # simular a entrada de senha de uma maneira segura (neste primeiro momento)
+import bcrypt # criptografar senha, a nível de garantir integridade e segurança do usuário
+import openrouteservice # API para simulação de rotas 
+import folium # para mostrar um mapa e não somente derivadas pro usuário
+import webbrowser # abrir o mapa automaticamente para o usuário, mesmmo que nesse momento seja somente com HTML
+
 # Criações de variáveis necessárias para início do programa.
 
 categoriasCNH = {
@@ -8,12 +17,9 @@ categoriasCNH = {
     'E': 'Categoria E - Veículos de carga pesada com reboque'
 }
 
+chaveAPI = '5b3ce3597851110001cf62480b2433fb93fa4bf4bcda5d0487e0ee7f' # futuramente, tratar isso para ter mais segurança e não ser de fácil acesso pros usuários
 
-# Imports necessários para a aplicação
-
-import time # intervalo de tempo para o usuário poder visualizar e processar as informações
-import getpass # simular a entrada de senha de uma maneira segura (neste primeiro momento)
-import bcrypt # criptografar senha, a nível de garantir integridade e segurança do usuário
+client = openrouteservice.Client(key=chaveAPI) # Inicializa o cliente OpenRouteService
 
 # Funções
 
@@ -224,7 +230,32 @@ while True:
 
     elif opcao == 4:
         # Opção para ver caminhos alternativos para determinado destino
-        print("Em breve")
+        pontoPartida = input("Informe o local de partida, informe, por favor, como exemplo 'Avenida Paulista, São Paulo, Brasil': ") 
+        destino = input("Informe o local de destino, informe, por favor, como exemplo 'Avenida Paulista, São Paulo, Brasil': ")
+
+        coordenadas_partida = client.pelias_search(pontoPartida)['features'][0]['geometry']['coordinates']
+        coordenadas_destino = client.pelias_search(destino)['features'][0]['geometry']['coordinates']
+
+        rota = client.directions(
+            coordinates=[coordenadas_partida, coordenadas_destino],
+            profile='driving-car',  # Você pode usar 'foot-walking' para rota a pé -> futuramente pensar em algo
+            format='geojson',
+        )
+
+        if 'features' in rota:
+            # Crie um mapa com o folium
+            mapa = folium.Map(location=[coordenadas_partida[1], coordenadas_partida[0]], zoom_start=15)
+
+            # Adicione a rota ao mapa
+            folium.GeoJson(rota).add_to(mapa)
+
+            # Abra o mapa em um navegador
+            mapa.save('rota.html')
+            webbrowser.open_new_tab('rota.html') # abre o mapa automaticamente
+
+            print("Mapa da rota foi salvo como 'rota.html'.")
+        else:
+            print("Não foi possível encontrar uma rota.")
 
     elif opcao == 5:
         # Opção para favoritar uma rota

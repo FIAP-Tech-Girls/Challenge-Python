@@ -1,13 +1,13 @@
-import openrouteservice # não esquecer de colocar no readme que tem que baixar o openrouteservice e folium
+import openrouteservice 
 import folium
 import webbrowser
 
 # Substitua 'YOUR_API_KEY' pela sua chave de API OpenRouteService
-api_key = 'ChaveAPI' # não esquecer de trocar
+api_key = '5b3ce3597851110001cf62480b2433fb93fa4bf4bcda5d0487e0ee7f' # não esquecer de trocar
 
 # Nomes de ruas (endereços)
-ponto_partida_nome = 'Rua Nova Piratininga, São Paulo, Brasil'
-destino_nome = 'Avenida Paulista, São Paulo, Brasil'
+ponto_partida_nome = input("Informe o local de partida: ") 
+destino_nome = input("Informe o local de destino: ") 
 
 # Inicialize o cliente OpenRouteService
 client = openrouteservice.Client(key=api_key)
@@ -34,6 +34,6 @@ if 'features' in rota:
     mapa.save('rota.html')
     webbrowser.open_new_tab('rota.html') # abre o mapa automaticamente
 
-    print("Mapa da rota foi salvo como 'rota.html'. Abra-o em um navegador para visualizar a rota.")
+    print("Mapa da rota foi salvo como 'rota.html'.")
 else:
     print("Não foi possível encontrar uma rota.")
