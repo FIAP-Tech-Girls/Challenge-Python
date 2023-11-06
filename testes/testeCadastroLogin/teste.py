@@ -11,7 +11,8 @@ def cadastro():
         a questão da integridade e segurança dos dados do usuário, ocultando a senha e criptografando em seguida.
     '''
 
-    with open('testes/testeCadastroLogin/usuarios.json', 'r', encoding='utf-8') as arquivo:
+    # abre o arquivo para manter os dados anteriormente inseridos
+    with open('testes/testeCadastroLogin/usuarios.json', 'r', encoding='utf-8') as arquivo: 
         usuarios = json.load(arquivo)
     
     global apelido # deixa global para poder utilizar o apelido durante todo sistema.
@@ -41,3 +42,22 @@ def cadastro():
     return cadastro
 
 usuario = cadastro()
+
+# login teste
+def login(email, senha):
+    with open('testes/testeCadastroLogin/usuarios.json', 'r', encoding='utf-8') as arquivo: 
+        usuarios = json.load(arquivo)
+
+    for usuario in usuarios:
+        if usuario['email'] == email:
+            if bcrypt.checkpw(senha.encode("utf-8"), usuario["senha"].encode("utf-8")):
+                print(f"Bem-vindo, {usuario['apelido']}!")  
+                return True
+        
+    print("Email ou senha incorretos. Tente novamente.")
+    return False
+
+emailLogin = input("Digite seu email: ")
+senhaLogin = getpass.getpass("Digite sua senha: ")
+
+login(emailLogin, senhaLogin)
