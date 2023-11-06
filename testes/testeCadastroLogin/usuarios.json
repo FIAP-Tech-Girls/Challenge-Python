@@ -1,0 +1,14 @@
+[
+    {
+        "nome": "Teste",
+        "apelido": "Teste",
+        "email": "teste@teste.com.br",
+        "senha": "$2b$12$uPOPBiOwHyy3xad9OY4jgOgjdIHxZSL.HluDO117IyM/nS7LJrRdC"
+    },
+    {
+        "nome": "Teste2",
+        "apelido": "Teste2",
+        "email": "teste@teste.com.br",
+        "senha": "$2b$12$4nvEgwRK12ZPaq067nYKrubx7wBIkn4RPfJtxk8ydf4Iu177eEKx."
+    }
+]
