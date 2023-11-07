@@ -40,5 +40,11 @@
         "apelido": "Aaa",
         "email": "",
         "senha": "$2b$12$oO1bOmFcOqKrraXXUNP4huzgGz2Wn6l0MmTNI72q7f495M0FmYiG2"
+    },
+    {
+        "nome": "Socorro",
+        "apelido": "Maria",
+        "email": "mariasocorro@gmail.com",
+        "senha": "$2b$12$DNmTEjBah4P/pN/dV/jgau4cIhevlC/a7PnUdp8dIqNOiXnHAFzZW"
     }
 ]
