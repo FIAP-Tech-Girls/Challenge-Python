@@ -7,6 +7,11 @@ usuarios = []
 
 # login teste
 def login(email, senha):
+    '''
+        Função criada para simular o login do usuário através do arquivo JSON contendo os dados dos usuários
+        e a senha criptografada, em que o próprio sistema consegue descriptografar e fazer o acesso caso os dados
+        estejam corretos.
+    '''
     with open('testes/testeCadastroLogin/usuarios.json', 'r', encoding='utf-8') as arquivo: 
         usuarios = json.load(arquivo)
         

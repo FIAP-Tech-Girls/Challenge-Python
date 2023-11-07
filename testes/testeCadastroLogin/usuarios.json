@@ -46,5 +46,17 @@
         "apelido": "Maria",
         "email": "mariasocorro@gmail.com",
         "senha": "$2b$12$DNmTEjBah4P/pN/dV/jgau4cIhevlC/a7PnUdp8dIqNOiXnHAFzZW"
+    },
+    {
+        "nome": "Dracula",
+        "apelido": "Drac",
+        "email": "dracula@gmail.com",
+        "senha": "$2b$12$8DkFlne44gGJihGXyJ745.yoZ66mVjzDJcjTKRP6B1c/cMnT8WMHm"
+    },
+    {
+        "nome": "Lisa",
+        "apelido": "Lis",
+        "email": "lisadracula@gmail.com",
+        "senha": "$2b$12$HJou5zI.o2sMXpGp0OHnEOwdhs.aneHq03l9/i1/wu6eHT0RWloxS"
     }
 ]

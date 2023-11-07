@@ -1,0 +1,14 @@
+[
+    {
+        "nome": "Teste Arquivo Final",
+        "apelido": "Teste",
+        "email": "teste@teste.com",
+        "senha": "$2b$12$HzCZ0lyarCmXREG05pKxQOJGZI7rBLTqdd6i4XEvJWKxi1bLV9GS2"
+    },
+    {
+        "nome": "Teste Final 2",
+        "apelido": "Testefinal@Teste.Com",
+        "email": "testefinal@teste.com",
+        "senha": "$2b$12$NxieaWxuBLINSk89hJeun.rpPNgql8LJkKrKVDKIBb6.KeCnqk6zm"
+    }
+]

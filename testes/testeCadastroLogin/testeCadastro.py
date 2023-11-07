@@ -14,8 +14,6 @@ def cadastro():
     # abre o arquivo para manter os dados anteriormente inseridos
     with open('testes/testeCadastroLogin/usuarios.json', 'r', encoding='utf-8') as arquivo: 
         usuarios = json.load(arquivo)
-    
-    global apelido # deixa global para poder utilizar o apelido durante todo sistema.
 
     nome = input("Digite seu nome completo: ").title()
     apelido = input("Digite como deseja ser chamado durante a nossa conversa: ").title()
@@ -39,6 +37,9 @@ def cadastro():
     with open('testes/testeCadastroLogin/usuarios.json', 'w', encoding='utf-8') as arquivoJSON:
             json.dump(usuarios, arquivoJSON, indent=4, ensure_ascii=False)
 
+    print("Cadastro feito com sucesso! Basta realizar seu login para acessar à Tiana!")
+
     return cadastro
 
 usuario = cadastro()
+
