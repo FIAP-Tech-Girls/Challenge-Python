@@ -6,40 +6,16 @@
         "senha": "$2b$12$uPOPBiOwHyy3xad9OY4jgOgjdIHxZSL.HluDO117IyM/nS7LJrRdC"
     },
     {
-        "nome": "Teste2",
-        "apelido": "Teste2",
-        "email": "teste@teste.com.br",
-        "senha": "$2b$12$4nvEgwRK12ZPaq067nYKrubx7wBIkn4RPfJtxk8ydf4Iu177eEKx."
-    },
-    {
         "nome": "Teste3",
         "apelido": "Teste3",
         "email": "teste3@teste.",
         "senha": "$2b$12$lSPJQGbW4DBpe6Lnqjc8s.LS8tEuOuc3do0Xp1xjcWCoVTubU7nvO"
     },
     {
-        "nome": "",
-        "apelido": "& C:/Users/Letic/Appdata/Local/Programs/Python/Python311/Python.Exe \"C:/Users/Letic/Onedrive/Área De Trabalho/Python/2023/Challenge-Python/Testes/Testecadastrologin/Teste.Py\"",
-        "email": "teste@teste.com.br",
-        "senha": "$2b$12$QCkvEJlg9Li0AwDC5U1GK.OiJBFMVyDrwTpe3G3kNRnnUKsl7X1ye"
-    },
-    {
         "nome": "Alucard",
         "apelido": "Card",
         "email": "alucard@gmail.com",
         "senha": "$2b$12$1B4y2/kw07jIys9kuV4mrOHSOP9qlrknqOQKpcNPD7fBSTJjSv4FW"
-    },
-    {
-        "nome": "Aa",
-        "apelido": "Aaa",
-        "email": "aaa",
-        "senha": "$2b$12$NOozUoUzVgEdY0KROeP6hO7vUGDWEURi7N3CHrpl9ZlmxgqdSHH0a"
-    },
-    {
-        "nome": "Po",
-        "apelido": "Aaa",
-        "email": "",
-        "senha": "$2b$12$oO1bOmFcOqKrraXXUNP4huzgGz2Wn6l0MmTNI72q7f495M0FmYiG2"
     },
     {
         "nome": "Socorro",
@@ -64,5 +40,17 @@
         "apelido": "Teste",
         "email": "aaa@gmail",
         "senha": "$2b$12$qqOtQXnkuSb9JX6HuX8AJ./G0LutaHI2dPed6VW9AumtRXtftmz7u"
+    },
+    {
+        "nome": "Arnaldo Resina",
+        "apelido": "Naldo",
+        "email": "arnaldoresina@gmail.com",
+        "senha": "$2b$12$ygfBmFvSS4u8YVRl8WK3a.2nhRjMGot2q3DPOyEw8FL0ckWFuS1Pa"
+    },
+    {
+        "nome": "Yone ",
+        "apelido": "Irmão Do Yasuo",
+        "email": "yoneyasuo@gmail.com",
+        "senha": "$2b$12$BCIX0CUYgRzdcAm3yJwVZecFvCg6WjKvTV7fxUaScuq85Q8lPcBtC"
     }
 ]

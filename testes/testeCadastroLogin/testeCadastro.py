@@ -1,11 +1,12 @@
 import bcrypt
 import getpass
 
-import json # colocar na versão final
+import json
 
 usuarios = [] 
 
 def cadastro():
+
     '''
         Função utilizada para simular o cadastro dentro da aplicação. Dentro dessa função, é simulado também
         a questão da integridade e segurança dos dados do usuário, ocultando a senha e criptografando em seguida.
