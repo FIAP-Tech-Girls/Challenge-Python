@@ -43,10 +43,10 @@ def cadastro():
     with open('usuarios.json', 'r', encoding='utf-8') as arquivo: 
         usuarios = json.load(arquivo)
 
-    nome = input("Digite seu nome completo: ").title()
-    apelido = input("Digite como deseja ser chamado durante a nossa conversa: ").title()
-    email = input("Digite seu e-mail: ")
-    senha = getpass.getpass("Digite sua senha (ela está ocultada pela sua segurança): ")
+    nome: str = input("Digite seu nome completo: ").title()
+    apelido: str = input("Digite como deseja ser chamado durante a nossa conversa: ").title()
+    email: str = input("Digite seu e-mail: ")
+    senha: str = getpass.getpass("Digite sua senha (ela está ocultada pela sua segurança): ")
 
     salt = bcrypt.gensalt() # gera um salt aleatório
 
@@ -69,7 +69,7 @@ def cadastro():
 
     return cadastro
 
-def login(email, senha):
+def login(email: str, senha: str):
     '''
         Função criada para simular o login do usuário através do arquivo JSON contendo os dados dos usuários
         e a senha criptografada, em que o próprio sistema consegue descriptografar e fazer o acesso caso os dados

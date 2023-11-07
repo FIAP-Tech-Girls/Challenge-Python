@@ -15,10 +15,10 @@ def cadastro():
     with open('testes/testeCadastroLogin/usuarios.json', 'r', encoding='utf-8') as arquivo: 
         usuarios = json.load(arquivo)
 
-    nome = input("Digite seu nome completo: ").title()
-    apelido = input("Digite como deseja ser chamado durante a nossa conversa: ").title()
-    email = input("Digite seu e-mail: ")
-    senha = getpass.getpass("Digite sua senha (ela está ocultada pela sua segurança): ")
+    nome: str = input("Digite seu nome completo: ").title()
+    apelido: str = input("Digite como deseja ser chamado durante a nossa conversa: ").title()
+    email: str = input("Digite seu e-mail: ")
+    senha: str = getpass.getpass("Digite sua senha (ela está ocultada pela sua segurança): ")
 
     salt = bcrypt.gensalt() # gera um salt aleatório
 

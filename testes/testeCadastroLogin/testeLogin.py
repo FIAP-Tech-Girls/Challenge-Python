@@ -6,7 +6,7 @@ import json # colocar na versão final
 usuarios = [] 
 
 # login teste
-def login(email, senha):
+def login(email: str, senha: str):
     '''
         Função criada para simular o login do usuário através do arquivo JSON contendo os dados dos usuários
         e a senha criptografada, em que o próprio sistema consegue descriptografar e fazer o acesso caso os dados
@@ -35,8 +35,8 @@ def login(email, senha):
         print("A senha está incorreta! Tente novamente!")
         return False
 
-emailLogin = input("Digite seu email: ")
-senhaLogin = getpass.getpass("Digite sua senha: ")
+emailLogin: str = input("Digite seu email: ")
+senhaLogin: str = getpass.getpass("Digite sua senha: ")
 
 login(emailLogin, senhaLogin)
 

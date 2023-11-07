@@ -58,5 +58,11 @@
         "apelido": "Lis",
         "email": "lisadracula@gmail.com",
         "senha": "$2b$12$HJou5zI.o2sMXpGp0OHnEOwdhs.aneHq03l9/i1/wu6eHT0RWloxS"
+    },
+    {
+        "nome": "Testando",
+        "apelido": "Teste",
+        "email": "aaa@gmail",
+        "senha": "$2b$12$qqOtQXnkuSb9JX6HuX8AJ./G0LutaHI2dPed6VW9AumtRXtftmz7u"
     }
 ]

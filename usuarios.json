@@ -10,5 +10,11 @@
         "apelido": "Testefinal@Teste.Com",
         "email": "testefinal@teste.com",
         "senha": "$2b$12$NxieaWxuBLINSk89hJeun.rpPNgql8LJkKrKVDKIBb6.KeCnqk6zm"
+    },
+    {
+        "nome": "Testando Com Tipo",
+        "apelido": "Teste",
+        "email": "teste@tipo.com",
+        "senha": "$2b$12$Yj1PWsTlw6c5d5TTY3pHY.0kjr0cWBOvgWCtUbDPwA8r09ALX4.Pe"
     }
 ]
