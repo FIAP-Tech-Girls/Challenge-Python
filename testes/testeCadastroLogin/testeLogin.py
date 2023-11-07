@@ -10,13 +10,15 @@ def login(email, senha):
     with open('testes/testeCadastroLogin/usuarios.json', 'r', encoding='utf-8') as arquivo: 
         usuarios = json.load(arquivo)
         
+    global apelidoUsuario
     encontrouUsuario = False
     senhaCorreta = False
     for usuario in usuarios:
         if usuario['email'] == email:
             encontrouUsuario = True
             if bcrypt.checkpw(senha.encode("utf-8"), usuario["senha"].encode("utf-8")):
-                print(f"Bem-vindo, {usuario['apelido']}!")  
+                apelidoUsuario = usuario["apelido"]
+                print(f"Bem-vindo, {apelidoUsuario}!")  
                 senhaCorreta = True
                 return True
             
@@ -32,3 +34,5 @@ emailLogin = input("Digite seu email: ")
 senhaLogin = getpass.getpass("Digite sua senha: ")
 
 login(emailLogin, senhaLogin)
+
+print(f"Olá {apelidoUsuario}")
