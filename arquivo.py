@@ -43,31 +43,39 @@ def cadastro():
     with open('usuarios.json', 'r', encoding='utf-8') as arquivo: 
         usuarios = json.load(arquivo)
 
-    nome: str = input("Digite seu nome completo: ").title()
-    apelido: str = input("Digite como deseja ser chamado durante a nossa conversa: ").title()
     email: str = input("Digite seu e-mail: ")
-    senha: str = getpass.getpass("Digite sua senha (ela está ocultada pela sua segurança): ")
+    usuarioExiste = False
+    for usuario in usuarios:
+         if usuario['email'] == email:
+              usuarioExiste = True
+              print("O email já está registrado em nosso sistema! Por favor, realize seu login com email e senha!")
 
-    salt = bcrypt.gensalt() # gera um salt aleatório
+    if not usuarioExiste:
+        nome: str = input("Digite seu nome completo: ").title()
+        apelido: str = input("Digite como deseja ser chamado durante a nossa conversa: ").title()
+    
+        senha: str = getpass.getpass("Digite sua senha (ela está ocultada pela sua segurança): ")
 
-    hashSenha = bcrypt.hashpw(senha.encode("utf-8"), salt)
-    hashSenhaString = hashSenha.decode('utf-8')
+        salt = bcrypt.gensalt() # gera um salt aleatório
 
-    cadastro = {
-        "nome": nome,
-        "apelido": apelido,
-        "email": email,
-        "senha": hashSenhaString
-    }
+        hashSenha = bcrypt.hashpw(senha.encode("utf-8"), salt)
+        hashSenhaString = hashSenha.decode('utf-8')
 
-    usuarios.append(cadastro)
+        cadastro = {
+            "nome": nome,
+            "apelido": apelido,
+            "email": email,
+            "senha": hashSenhaString
+        }
 
-    with open('usuarios.json', 'w', encoding='utf-8') as arquivoJSON:
-            json.dump(usuarios, arquivoJSON, indent=4, ensure_ascii=False)
+        usuarios.append(cadastro)
 
-    print("Cadastro feito com sucesso! Basta realizar seu login para acessar à Tiana!")
+        with open('usuarios.json', 'w', encoding='utf-8') as arquivoJSON:
+                json.dump(usuarios, arquivoJSON, indent=4, ensure_ascii=False)
 
-    return cadastro
+        print("Cadastro feito com sucesso! Basta realizar seu login para acessar à Tiana!")
+
+        return cadastro
 
 def login(email: str, senha: str):
     '''

@@ -16,5 +16,11 @@
         "apelido": "Teste",
         "email": "teste@tipo.com",
         "senha": "$2b$12$Yj1PWsTlw6c5d5TTY3pHY.0kjr0cWBOvgWCtUbDPwA8r09ALX4.Pe"
+    },
+    {
+        "nome": "Alucard",
+        "apelido": "Card",
+        "email": "alucard@gmail.com",
+        "senha": "$2b$12$Q80Ovq8EeUOBa5.23/YY2OP3yVIz7bacYaSc7Vgkzn56JEEH/ZkCS"
     }
 ]
