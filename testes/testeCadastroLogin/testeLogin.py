@@ -5,7 +5,6 @@ import json # colocar na versão final
 
 usuarios = [] 
 
-# login teste
 def login(email: str, senha: str):
     '''
         Função criada para simular o login do usuário através do arquivo JSON contendo os dados dos usuários
