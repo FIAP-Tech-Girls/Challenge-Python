@@ -1,6 +1,7 @@
 # Tiana, a Inteligência Artificial.
 
 ## O que é?
+
 Projeto de Python criado para a Challenge da @FIAP em parceria com a IBM para as aulas de Computational Thinking With Python.
 
 ## Quero testar no meu PC, como fazer? Preciso instalar algo?
@@ -8,7 +9,7 @@ Projeto de Python criado para a Challenge da @FIAP em parceria com a IBM para as
 - Ao iniciar a aplicação, no terminal, digite "pip install bcrypt" ou "py -3.11 -m pip install bcrypt" e aperte enter, aguardando a instalação;
 - Depois, no terminal, digite "pip install openrouteservice" ou "py -3.11 -m pip install openrouteservice" e aperte enter, aguardando a instalação;
 - E, por fim, no terminal, digite "pip install folium" ou "py -3.11 -m pip install folium" e aperte enter, aguardando a instalação.
-- Feito isso, você poderá rodar o nosso projeto em sua máquina!
+- Feito isso, para rodar o rpojeto em sua máquina, escolha o arquivo.py, que é o programa principal!
 
 ## Quem compõe esse projeto?
 
@@ -31,8 +32,10 @@ A Inteligência artificial que busca ser o mais humanizado possível para a melh
 </ul>
 
 ## Versões 
+
 Todas as versões serão salvas na pasta "versoes", caso seja do interesse analisar o código detalhadamente, como também para facilitar melhorias e, caso necessário, voltar alguma parte do código de uma versão antiga.
-Foi também criado uam pasta de "testes", para testes a parte de alguma funcionalidade antes de jogar no arquivo final.
+Foi também criado uma pasta de "testes", para testes a parte de alguma funcionalidade antes de jogar no arquivo final.
+
 <ul>
 <li>Versão 1.0: Último commit feito no dia 11 de abril de 2023. Essa versão conta com uma saudação padrão da IA, que logo em seguida questiona se o usuário deseja ou não participar da entrevista, trabalhando com match case, ifs e elses. E por fim, agradece o usuário por participar da entrevista e deixou espaço para mais implementações futuras. </li>
 
