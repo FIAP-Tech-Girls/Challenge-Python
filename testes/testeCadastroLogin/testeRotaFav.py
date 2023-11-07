@@ -44,8 +44,7 @@ def login(email: str, senha: str):
         print("A senha está incorreta! Tente novamente!")
         return False
 
-def rotaFavorita(emailUsuario, pontoOrigem, pontoDestino, tituloRotaFav):
-
+def rotaFavorita(emailUsuario: str, pontoOrigem: str, pontoDestino: str, tituloRotaFav: str):
     with open('testes/testeCadastroLogin/rotasFavoritas.json', 'r', encoding='utf-8') as arquivo: 
         rotasFav = json.load(arquivo)
     
@@ -60,7 +59,9 @@ def rotaFavorita(emailUsuario, pontoOrigem, pontoDestino, tituloRotaFav):
     rotasUsuario[tituloRotaFav] = rota 
 
     with open('testes/testeCadastroLogin/rotasFavoritas.json', 'w', encoding='utf-8') as arquivo: 
-        json.dump(rotasFav, arquivo, indent=4)
+        json.dump(rotasFav, arquivo, indent=4, ensure_ascii=False)
+
+    print("Rota cadastrada com sucesso!")
 
     
     

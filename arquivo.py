@@ -107,4 +107,28 @@ def login(email: str, senha: str):
         print("A senha está incorreta! Tente novamente!")
         return False
     
+def rotaFavorita(emailUsuario: str, pontoOrigem: str, pontoDestino: str, tituloRotaFav: str):
+    '''
+        Função criada para cadastrar as rotas favoritas do usuário em um arquivo JSON externo, 
+        permitindo que as rotas, mesmo após o encerramento da Tiana, fiquem salvas através do e-mail do
+        usuário, que é um ID único.
+    '''
+    with open('testes/testeCadastroLogin/rotasFavoritas.json', 'r', encoding='utf-8') as arquivo: 
+        rotasFav = json.load(arquivo)
+    
+    if emailUsuario not in rotasFav:
+        rotasFav[emailUsuario] = {}
+    
+    rotasUsuario = rotasFav[emailUsuario]
+    rota = {
+        "Ponto Origem": pontoOrigem,
+        "Ponto Destino": pontoDestino
+    }
+    rotasUsuario[tituloRotaFav] = rota 
+
+    with open('testes/testeCadastroLogin/rotasFavoritas.json', 'w', encoding='utf-8') as arquivo: 
+        json.dump(rotasFav, arquivo, indent=4, ensure_ascii=False)
+    
+    print("Rota cadastrada com sucesso!")
+    
 # Programa principal
