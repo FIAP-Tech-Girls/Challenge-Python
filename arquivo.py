@@ -106,3 +106,5 @@ def login(email: str, senha: str):
     if encontrouUsuario and not senhaCorreta:
         print("A senha está incorreta! Tente novamente!")
         return False
+    
+# Programa principal
