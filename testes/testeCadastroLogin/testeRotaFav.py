@@ -72,7 +72,9 @@ def rotaFavorita(emailUsuario: str, pontoOrigem: str, pontoDestino: str, tituloR
     print("Rota cadastrada com sucesso!")
 
 def editarRotaFav():
-
+    '''
+        Função feita para edição de rotas favoritas.
+    '''
     with open('testes/testeCadastroLogin/rotasFavoritas.json', 'r', encoding='utf-8') as arquivo: 
         rotasFav = json.load(arquivo)
 
@@ -135,6 +137,56 @@ def editarRotaFav():
     with open('testes/testeCadastroLogin/rotasFavoritas.json', 'w', encoding='utf-8') as arquivo: 
         json.dump(rotasFav, arquivo, indent=4, ensure_ascii=False)
 
+def excluirRota():
+    '''
+        Função feita para exclusão de rotas favoritas.
+    '''
+    with open('testes/testeCadastroLogin/rotasFavoritas.json', 'r', encoding='utf-8') as arquivo: 
+        rotasFav = json.load(arquivo)
+        # Para facilitar a lógica do programa caso encontre ou não o título desejado pelo usuário
+    encontrouRota = False 
+
+    if emailUsuario not in rotasFav: # Caso o usuário não possua nenhuma rota favorita
+        print("Você não possui rotas favoritas cadastradas! Que tal cadastrar algumas?")
+
+    else: # Caso possua
+        titulo = input("Qual título da rota que você deseja excluir? \n")
+        removerChaves = []
+        for chave, item in rotasFav[emailUsuario].items():
+            if item["Titulo"] == titulo:
+                encontrouRota = True # se encontra, passa a ser verdadeiro para prosseguir
+                print(f"Você tem certeza que deseja remover {titulo} de suas rotas favoritas?") 
+                # Para o usuário ter certeza e não excluir nada sem desejar
+                print("\n 1 - Sim \n 2 - Não \n")
+
+                try: # tratamento de erros para evitar paradas indesejadas durante o programa
+                    opcaoCerteza = int(input("Informe a opção desejada aqui: "))
+                    if (opcaoCerteza < 1) or (opcaoCerteza > 2):
+                        raise TypeError
+                    
+                    elif opcaoCerteza == 1:
+                        removerChaves.append(chave)
+                        print(f"O {titulo} foi removido com sucesso!")
+
+                    elif opcaoCerteza == 2:
+                        print("Nenhuma rota foi removida!")
+
+                except ValueError: # caso valor diferente de inteiro
+                    print("Por favor, informe somente números dentre as opções disponíveis!")
+                    
+                except TypeError: # caso opção não existente no sistema
+                    print("Por favor, digite uma opção válida para prosseguir.")
+
+            if not encontrouRota: # caso a rota chamada não exista no sistema
+                print(f"A rota para o título {titulo} não existe! Tente novamente, ou cadastre em nosso sistema para editar.")
+
+    # Remover as chaves marcadas para remoção -> exclui tudo de uma vez
+    for chave in removerChaves:
+        del rotasFav[emailUsuario]
+
+    with open('testes/testeCadastroLogin/rotasFavoritas.json', 'w', encoding='utf-8') as arquivo: 
+        json.dump(rotasFav, arquivo, indent=4, ensure_ascii=False)
+
 emailLogin: str = input("Digite seu email: ")
 senhaLogin: str = getpass.getpass("Digite sua senha: ")
 
@@ -142,9 +194,10 @@ login(emailLogin, senhaLogin)
 
 print(f"Olá {apelidoUsuario}")
 
-editarRotaFav()
+#editarRotaFav()
+excluirRota()
 
 #pontoOrigem = input("Digite o ponto de origem: ")
 #pontoDestino = input("Digite o ponto de destino: ")
-#tituloRota = input("Digite o título da rota: ").title()
+#tituloRota = input("Digite o título da rota: ")
 #rotaFavorita(emailLogin, pontoOrigem, pontoDestino, tituloRota)
