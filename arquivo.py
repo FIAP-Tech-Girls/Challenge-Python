@@ -14,25 +14,6 @@ usuarios = [] # utilizada na função de cadastro e login para acesso ao arquivo
 
 # Funções
 
-def menuOpcoes():
-    '''
-        Função utilizada para facilitar e deixar o código inteiro do sistema mais limpo para chamar 
-        o menu de opções, que se repete em todo looping. Há uma validação para evitar que erros aconteçam.
-    '''
-
-    print(f"\n 1 - Participar da entrevista de qualificação do trânsito; \n 2 - Ver situação de determinada rota; \n 3 - Feedback sobre determinada rota; \n 4 - Rotas alternativas para um destino; \n 5 - Favoritar uma rota \n 6 - Visualizar rotas favoritas \n 7 - Feedback sobre aplicativo; \n 8 - Encerrar Tiana.")
-    try:
-        opcao = int(input("Informe a opção desejada: "))
-        if (opcao < 1) or (opcao > 8):
-            raise TypeError
-        return opcao
-    except ValueError:
-        print("Por favor, informe somente números dentre as opções disponíveis!")
-        time.sleep(1)
-    except TypeError:
-        print("Por favor, digite uma opção válida para prosseguir.")
-        time.sleep(1)
-
 def cadastro():
     '''
         Função utilizada para simular o cadastro dentro da aplicação. Dentro dessa função, é simulado também
@@ -83,15 +64,16 @@ def login(email: str, senha: str):
         e a senha criptografada, em que o próprio sistema consegue descriptografar e fazer o acesso caso os dados
         estejam corretos.
     '''
-
     with open('usuarios.json', 'r', encoding='utf-8') as arquivo: 
         usuarios = json.load(arquivo)
         
     global apelidoUsuario
+    global emailUsuario
     encontrouUsuario = False
     senhaCorreta = False
     for usuario in usuarios:
-        if usuario['email'] == email:
+        emailUsuario = usuario['email']
+        if emailUsuario == email:
             encontrouUsuario = True
             if bcrypt.checkpw(senha.encode("utf-8"), usuario["senha"].encode("utf-8")):
                 apelidoUsuario = usuario["apelido"]
@@ -107,29 +89,5 @@ def login(email: str, senha: str):
         print("A senha está incorreta! Tente novamente!")
         return False
     
-def rotaFavorita(emailUsuario: str, pontoOrigem: str, pontoDestino: str, tituloRotaFav: str):
-    '''
-        Função criada para cadastrar as rotas favoritas do usuário em um arquivo JSON externo, 
-        permitindo que as rotas, mesmo após o encerramento da Tiana, fiquem salvas através do e-mail do
-        usuário, que é um ID único.
-    '''
-    with open('testes/testeCadastroLogin/rotasFavoritas.json', 'r', encoding='utf-8') as arquivo: 
-        rotasFav = json.load(arquivo)
-    
-    if emailUsuario not in rotasFav:
-        rotasFav[emailUsuario] = {}
-    
-    rotasUsuario = rotasFav[emailUsuario]
-    rota = {
-        "Titulo": tituloRotaFav,
-        "Ponto Origem": pontoOrigem,
-        "Ponto Destino": pontoDestino
-    }
-    rotasUsuario[tituloRotaFav] = rota 
-
-    with open('testes/testeCadastroLogin/rotasFavoritas.json', 'w', encoding='utf-8') as arquivo: 
-        json.dump(rotasFav, arquivo, indent=4, ensure_ascii=False)
-    
-    print("Rota cadastrada com sucesso!")
     
 # Programa principal
