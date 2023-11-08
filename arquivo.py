@@ -331,3 +331,9 @@ while logado == False:
     except TypeError:
         print("Por favor, digite uma opção válida para prosseguir.")
         time.sleep(1)
+
+# Caso o usuário esteja logado, podemos prosseguir com o looping infinito
+if logado == True:
+    while True:
+        print("Teste")
+        break
