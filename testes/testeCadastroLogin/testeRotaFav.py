@@ -11,8 +11,6 @@ import json
 import bcrypt
 import getpass
 
-
-
 def login(email: str, senha: str):
     '''
         Função criada para simular o login do usuário através do arquivo JSON contendo os dados dos usuários
@@ -53,18 +51,18 @@ def rotaFavorita(emailUsuario: str, pontoOrigem: str, pontoDestino: str, tituloR
     
     rotasUsuario = rotasFav[emailUsuario]
     rota = {
+        "Titulo": tituloRotaFav,
         "Ponto Origem": pontoOrigem,
         "Ponto Destino": pontoDestino
     }
     rotasUsuario[tituloRotaFav] = rota 
+    
 
     with open('testes/testeCadastroLogin/rotasFavoritas.json', 'w', encoding='utf-8') as arquivo: 
         json.dump(rotasFav, arquivo, indent=4, ensure_ascii=False)
 
     print("Rota cadastrada com sucesso!")
 
-    
-    
 emailLogin: str = input("Digite seu email: ")
 senhaLogin: str = getpass.getpass("Digite sua senha: ")
 
