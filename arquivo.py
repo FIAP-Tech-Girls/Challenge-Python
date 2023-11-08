@@ -90,5 +90,157 @@ def login(email: str, senha: str):
         print("A senha está incorreta! Tente novamente!")
         return False
     
+def rotaFavorita(emailUsuario: str, pontoOrigem: str, pontoDestino: str, tituloRotaFav: str):
+
+    '''
+        Função criada para criação de rotas favoritas de cada usuário, sendo armazenada em um arquivo JSON
+        para que cada usuário possua a sua e fique salva mesmo após o usuário deslogar de sua conta na Tiana,
+        e que mesmo após cadastrar novas, não apaguem as anteriormente salvas.
+    '''
+
+    with open('rotasFavoritas.json', 'r', encoding='utf-8') as arquivo: 
+        rotasFav = json.load(arquivo)
     
+    if emailUsuario not in rotasFav: # Caso o usuário não possua rotas favoritas cadastradas, já cria o dicionário
+        rotasFav[emailUsuario] = {}
+
+    rotasUsuario = rotasFav.get(emailUsuario, {})
+    # chave inteira para rotas favoritas -> para facilitar a identificação de cada rota
+    chave = 1
+    if rotasUsuario:
+        chavesInt = [int(chave) for chave in rotasUsuario.keys()] # preciso transformar em inteira para fazer a soma
+        chave = str(max(chavesInt) + 1) # Depois de somar, transformo para string para cadastrar na nova rota
+
+    rota = {
+        "Titulo": tituloRotaFav,
+        "Ponto Origem": pontoOrigem,
+        "Ponto Destino": pontoDestino
+    }
+
+    rotasUsuario[chave] = rota # cadastro a nova rota dentro da chave
+    rotasFav[emailUsuario] = rotasUsuario # adiciono no email do usuário mais rotas
+    
+    with open('rotasFavoritas.json', 'w', encoding='utf-8') as arquivo: 
+        json.dump(rotasFav, arquivo, indent=4, ensure_ascii=False)
+
+    print("Rota cadastrada com sucesso!")
+
+def editarRotaFav():
+    '''
+        Função feita para edição de rotas favoritas previamente salvas em nosso sistema.
+    '''
+    with open('rotasFavoritas.json', 'r', encoding='utf-8') as arquivo: 
+        rotasFav = json.load(arquivo)
+
+    # Para facilitar a lógica do programa caso encontre ou não o título desejado pelo usuário
+    encontrouRota = False 
+
+    if emailUsuario not in rotasFav: # Caso o usuário não possua nenhuma rota favorita
+        print("Você não possui rotas favoritas cadastradas! Que tal cadastrar algumas? ")
+    else: # Caso possua
+        titulo = input("Qual título da rota que você deseja editar? \n")
+        for item in rotasFav[emailUsuario].values():
+            if item["Titulo"] == titulo:
+                encontrouRota = True # se encontra, passa a ser verdadeiro para prosseguir
+                print(f"O que você deseja editar para {titulo}?")
+                print("\n 1 - Título \n 2 - Ponto de origem \n 3 - Ponto de destino \n 4 - Ponto de origem e destino \n 5- Título, ponto de origem e destino \n")
+                
+                try: # Tratamento de erros para evitar opções indesejadas e paradas inesperadas
+                    editarOpcao = int(input("Informe a opção desejada: "))
+
+                    if (editarOpcao < 1) or (editarOpcao > 5):
+                        raise TypeError
+                    
+                    if editarOpcao == 1:
+                        # Para editar título
+                        item["Titulo"] = input("Digite o novo título da rota favorita: ")
+                        print("Título atualizado com sucesso!")
+
+                    if editarOpcao == 2:
+                        # Para editar o ponto de origem 
+                        item["Ponto Origem"] = input("Digite o novo ponto de origem da rota favorita: ")
+                        print("Ponto de origem atualizado com sucesso!")
+
+                    if editarOpcao == 3:
+                        # Para editar o ponto de destino 
+                        item["Ponto Destino"] = input("Digite o novo ponto de origem da rota favorita: ")
+                        print("Ponto de destino atualizado com sucesso!")
+
+                    if editarOpcao == 4:
+                        # Para editar o ponto de origem e destino 
+                        item["Ponto Origem"] = input("Digite o novo ponto de origem da rota favorita: ")
+                        item["Ponto Destino"] = input("Digite o novo ponto de destino da rota favorita: ")
+                        print("Ponto de origem e destino atualizados com sucesso!")
+
+                    if editarOpcao == 5:
+                        # Para editar título, ponto de origem e destino
+                        item["Titulo"] = input("Digite o novo título da rota favorita: ")
+                        item["Ponto Origem"] = input("Digite o novo ponto de origem da rota favorita: ")
+                        item["Ponto Destino"] = input("Digite o novo ponto de destino da rota favorita: ")
+                        print("Título, ponto de origem e destino atualizados com sucesso!")
+
+                except ValueError: # caso valor diferente de inteiro
+                    print("Por favor, informe somente números dentre as opções disponíveis!")
+                    
+                except TypeError: # caso opção não existente no sistema
+                    print("Por favor, digite uma opção válida para prosseguir.")
+
+        if not encontrouRota: # caso a rota chamada não exista no sistema
+            print(f"A rota para o título {titulo} não existe! Tente novamente, ou cadastre em nosso sistema para editar.")
+
+    with open('rotasFavoritas.json', 'w', encoding='utf-8') as arquivo: 
+        json.dump(rotasFav, arquivo, indent=4, ensure_ascii=False)
+
+def excluirRota():
+    '''
+        Função feita para exclusão de rotas favoritas previamente cadastradas em nosso sistema.
+    '''
+    with open('testes/testeCadastroLogin/rotasFavoritas.json', 'r', encoding='utf-8') as arquivo: 
+        rotasFav = json.load(arquivo)
+        # Para facilitar a lógica do programa caso encontre ou não o título desejado pelo usuário
+    encontrouRota = False 
+
+    if emailUsuario not in rotasFav: # Caso o usuário não possua nenhuma rota favorita
+        print("Você não possui rotas favoritas cadastradas! Que tal cadastrar algumas?")
+
+    else: # Caso possua
+        titulo = input("Qual título da rota que você deseja excluir? \n")
+        chaveRemover = []
+        for chave, item in rotasFav[emailUsuario].items():
+            if item["Titulo"] == titulo:
+                encontrouRota = True # se encontra, passa a ser verdadeiro para prosseguir
+                print(f"Você tem certeza que deseja remover {titulo} de suas rotas favoritas?") 
+                # Para o usuário ter certeza e não excluir nada sem desejar
+                print("\n 1 - Sim \n 2 - Não \n")
+
+                try: # tratamento de erros para evitar paradas indesejadas durante o programa
+                    opcaoCerteza = int(input("Informe a opção desejada aqui: "))
+                    if (opcaoCerteza < 1) or (opcaoCerteza > 2):
+                        raise TypeError
+                    
+                    elif opcaoCerteza == 1:
+                            chaveRemover.append(chave)
+
+                    elif opcaoCerteza == 2:
+                        print("Nenhuma rota foi removida!")
+
+                except ValueError: # caso valor diferente de inteiro
+                    print("Por favor, informe somente números dentre as opções disponíveis!")
+                    
+                except TypeError: # caso opção não existente no sistema
+                    print("Por favor, digite uma opção válida para prosseguir.")
+
+        for chave in chaveRemover:
+            del rotasFav[emailUsuario][chave]
+            print("Rota removida com sucesso!")
+
+        if not rotasFav[emailUsuario]:  # Verifique se o usuário não possui mais rotas favoritas
+            del rotasFav[emailUsuario] # Deleta do arquivo JSON
+
+        if not encontrouRota: # caso a rota chamada não exista no sistema
+            print(f"A rota para o título {titulo} não existe! Tente novamente, ou cadastre em nosso sistema para editar.")
+
+    with open('testes/testeCadastroLogin/rotasFavoritas.json', 'w', encoding='utf-8') as arquivo: 
+        json.dump(rotasFav, arquivo, indent=4, ensure_ascii=False)
+
 # Programa principal

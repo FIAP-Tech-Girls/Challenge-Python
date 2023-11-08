@@ -151,7 +151,7 @@ def excluirRota():
 
     else: # Caso possua
         titulo = input("Qual título da rota que você deseja excluir? \n")
-        removerChaves = []
+        chaveRemover = []
         for chave, item in rotasFav[emailUsuario].items():
             if item["Titulo"] == titulo:
                 encontrouRota = True # se encontra, passa a ser verdadeiro para prosseguir
@@ -165,8 +165,7 @@ def excluirRota():
                         raise TypeError
                     
                     elif opcaoCerteza == 1:
-                        removerChaves.append(chave)
-                        print(f"O {titulo} foi removido com sucesso!")
+                            chaveRemover.append(chave)
 
                     elif opcaoCerteza == 2:
                         print("Nenhuma rota foi removida!")
@@ -177,12 +176,15 @@ def excluirRota():
                 except TypeError: # caso opção não existente no sistema
                     print("Por favor, digite uma opção válida para prosseguir.")
 
-            if not encontrouRota: # caso a rota chamada não exista no sistema
-                print(f"A rota para o título {titulo} não existe! Tente novamente, ou cadastre em nosso sistema para editar.")
+        for chave in chaveRemover:
+            del rotasFav[emailUsuario][chave]
+            print("Rota removida com sucesso!")
 
-    # Remover as chaves marcadas para remoção -> exclui tudo de uma vez
-    for chave in removerChaves:
-        del rotasFav[emailUsuario]
+        if not rotasFav[emailUsuario]:  # Verifique se o usuário não possui mais rotas favoritas
+            del rotasFav[emailUsuario] # Deleta do arquivo JSON
+
+        if not encontrouRota: # caso a rota chamada não exista no sistema
+            print(f"A rota para o título {titulo} não existe! Tente novamente, ou cadastre em nosso sistema para editar.")
 
     with open('testes/testeCadastroLogin/rotasFavoritas.json', 'w', encoding='utf-8') as arquivo: 
         json.dump(rotasFav, arquivo, indent=4, ensure_ascii=False)
@@ -200,4 +202,4 @@ excluirRota()
 #pontoOrigem = input("Digite o ponto de origem: ")
 #pontoDestino = input("Digite o ponto de destino: ")
 #tituloRota = input("Digite o título da rota: ")
-#rotaFavorita(emailLogin, pontoOrigem, pontoDestino, tituloRota)
+#rotaFavorita(emailUsuario, pontoOrigem, pontoDestino, tituloRota)
