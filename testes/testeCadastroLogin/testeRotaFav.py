@@ -47,15 +47,15 @@ def rotaFavorita(emailUsuario: str, pontoOrigem: str, pontoDestino: str, tituloR
     with open('testes/testeCadastroLogin/rotasFavoritas.json', 'r', encoding='utf-8') as arquivo: 
         rotasFav = json.load(arquivo)
     
-    if emailUsuario not in rotasFav:
+    if emailUsuario not in rotasFav: # Caso o usuário não possua rotas favoritas cadastradas, já cria o dicionário
         rotasFav[emailUsuario] = {}
 
     rotasUsuario = rotasFav.get(emailUsuario, {})
-    # chave inteira para rotas favoritas
+    # chave inteira para rotas favoritas -> para facilitar a identificação de cada rota
     chave = 1
     if rotasUsuario:
-        chavesInt = [int(chave) for chave in rotasUsuario.keys()]
-        chave = str(max(chavesInt) + 1)
+        chavesInt = [int(chave) for chave in rotasUsuario.keys()] # preciso transformar em inteira para fazer a soma
+        chave = str(max(chavesInt) + 1) # Depois de somar, transformo para string para cadastrar na nova rota
 
     rota = {
         "Titulo": tituloRotaFav,
@@ -63,8 +63,8 @@ def rotaFavorita(emailUsuario: str, pontoOrigem: str, pontoDestino: str, tituloR
         "Ponto Destino": pontoDestino
     }
 
-    rotasUsuario[chave] = rota 
-    rotasFav[emailUsuario] = rotasUsuario
+    rotasUsuario[chave] = rota # cadastro a nova rota dentro da chave
+    rotasFav[emailUsuario] = rotasUsuario # adiciono no email do usuário mais rotas
     
     with open('testes/testeCadastroLogin/rotasFavoritas.json', 'w', encoding='utf-8') as arquivo: 
         json.dump(rotasFav, arquivo, indent=4, ensure_ascii=False)
@@ -79,9 +79,9 @@ def editarRotaFav():
     # Para facilitar a lógica do programa caso encontre ou não o título desejado pelo usuário
     encontrouRota = False 
 
-    if emailUsuario not in rotasFav:
+    if emailUsuario not in rotasFav: # Caso o usuário não possua nenhuma rota favorita
         print("Você não possui rotas favoritas cadastradas! Que tal cadastrar algumas? ")
-    else:
+    else: # Caso possua
         titulo = input("Qual título da rota que você deseja editar? \n")
         for item in rotasFav[emailUsuario].values():
             if item["Titulo"] == titulo:
@@ -123,13 +123,13 @@ def editarRotaFav():
                         item["Ponto Destino"] = input("Digite o novo ponto de destino da rota favorita: ")
                         print("Título, ponto de origem e destino atualizados com sucesso!")
 
-                except ValueError:
+                except ValueError: # caso valor diferente de inteiro
                     print("Por favor, informe somente números dentre as opções disponíveis!")
                     
-                except TypeError:
+                except TypeError: # caso opção não existente no sistema
                     print("Por favor, digite uma opção válida para prosseguir.")
 
-        if not encontrouRota:
+        if not encontrouRota: # caso a rota chamada não exista no sistema
             print(f"A rota para o título {titulo} não existe! Tente novamente, ou cadastre em nosso sistema para editar.")
 
     with open('testes/testeCadastroLogin/rotasFavoritas.json', 'w', encoding='utf-8') as arquivo: 

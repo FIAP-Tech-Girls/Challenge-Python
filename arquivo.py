@@ -27,11 +27,11 @@ def cadastro():
     email: str = input("Digite seu e-mail: ")
     usuarioExiste = False
     for usuario in usuarios:
-         if usuario['email'] == email:
+         if usuario['email'] == email: # Caso o usuário já tenha seu email cadastrado em nosso sistema
               usuarioExiste = True
               print("O email já está registrado em nosso sistema! Por favor, realize seu login com email e senha!")
 
-    if not usuarioExiste:
+    if not usuarioExiste: # Caso o usuário não tenha seu email cadastrado em nosso sistema
         nome: str = input("Digite seu nome completo: ").title()
         apelido: str = input("Digite como deseja ser chamado durante a nossa conversa: ").title()
     
@@ -64,11 +64,12 @@ def login(email: str, senha: str):
         e a senha criptografada, em que o próprio sistema consegue descriptografar e fazer o acesso caso os dados
         estejam corretos.
     '''
+
     with open('usuarios.json', 'r', encoding='utf-8') as arquivo: 
         usuarios = json.load(arquivo)
         
-    global apelidoUsuario
-    global emailUsuario
+    global apelidoUsuario # Para facilitar comunicação com o usuário logado
+    global emailUsuario # Para facilitar pegar o email nas demais funções
     encontrouUsuario = False
     senhaCorreta = False
     for usuario in usuarios:
@@ -81,11 +82,11 @@ def login(email: str, senha: str):
                 senhaCorreta = True
                 return True
             
-    if not encontrouUsuario:
+    if not encontrouUsuario: # caso não exista esse cadastro em nosso sistema
         print("Email não cadastrado em nosso sistema. Por favor, verifique o email digitado.")
         return False
     
-    if encontrouUsuario and not senhaCorreta:
+    if encontrouUsuario and not senhaCorreta: # Caso exista o email mas a senha está incorreta
         print("A senha está incorreta! Tente novamente!")
         return False
     
