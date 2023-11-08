@@ -281,6 +281,25 @@ def excluirRota():
     with open('testes/testeCadastroLogin/rotasFavoritas.json', 'w', encoding='utf-8') as arquivo: 
         json.dump(rotasFav, arquivo, indent=4, ensure_ascii=False)
 
+def listarRotasFavoritas():
+    """
+        Função para listar as rotas favoritas de forma visual e amigável para o usuário.
+    """
+    with open('rotasFavoritas.json', 'r', encoding='utf-8') as arquivo: 
+        rotasFav = json.load(arquivo)
+
+    if emailUsuario not in rotasFav: # Caso o usuário não possua nenhuma rota favorita
+        print("Você não possui rotas favoritas cadastradas! Que tal cadastrar algumas?")
+
+    else: # Verifica se o usuário tem rotas favoritas
+        print("Aqui estão suas rotas favoritas:")
+        for chave, item in rotasFav[emailUsuario].items():
+            print(f"Rota {chave}:")
+            print(f"  Título: {item['Titulo']}")
+            print(f"  Ponto de Origem: {item['Ponto Origem']}")
+            print(f"  Ponto de Destino: {item['Ponto Destino']}")
+            print("-----------------------------------")
+
 # Programa principal
 
 '''
