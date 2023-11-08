@@ -8,17 +8,19 @@ import folium # para mostrar um mapa e não somente derivadas pro usuário
 import webbrowser # abrir o mapa automaticamente para o usuário, mesmmo que nesse momento seja somente com HTML
 import json # para abrir arquivos json externos da aplicação
 
-# variáveis criadas anteriormente para inicialização do programa
+# Variáveis criadas anteriormente para inicialização do programa
 
 usuarios = [] # utilizada na função de cadastro e login para acesso ao arquivo externo de usuários
+
+logado = False
 
 # Funções
 
 def cadastro():
-    '''
+    """
         Função utilizada para simular o cadastro dentro da aplicação. Dentro dessa função, é simulado também
         a questão da integridade e segurança dos dados do usuário, ocultando a senha e criptografando em seguida.
-    '''
+    """
 
     # abre o arquivo para manter os dados anteriormente inseridos
     with open('usuarios.json', 'r', encoding='utf-8') as arquivo: 
@@ -59,11 +61,11 @@ def cadastro():
         return cadastro
 
 def login(email: str, senha: str):
-    '''
+    """
         Função criada para simular o login do usuário através do arquivo JSON contendo os dados dos usuários
         e a senha criptografada, em que o próprio sistema consegue descriptografar e fazer o acesso caso os dados
         estejam corretos.
-    '''
+    """
 
     with open('usuarios.json', 'r', encoding='utf-8') as arquivo: 
         usuarios = json.load(arquivo)
@@ -92,11 +94,11 @@ def login(email: str, senha: str):
     
 def rotaFavorita(emailUsuario: str, pontoOrigem: str, pontoDestino: str, tituloRotaFav: str):
 
-    '''
+    """ 
         Função criada para criação de rotas favoritas de cada usuário, sendo armazenada em um arquivo JSON
         para que cada usuário possua a sua e fique salva mesmo após o usuário deslogar de sua conta na Tiana,
         e que mesmo após cadastrar novas, não apaguem as anteriormente salvas.
-    '''
+    """
 
     with open('rotasFavoritas.json', 'r', encoding='utf-8') as arquivo: 
         rotasFav = json.load(arquivo)
@@ -126,9 +128,10 @@ def rotaFavorita(emailUsuario: str, pontoOrigem: str, pontoDestino: str, tituloR
     print("Rota cadastrada com sucesso!")
 
 def editarRotaFav():
-    '''
+    """
         Função feita para edição de rotas favoritas previamente salvas em nosso sistema.
-    '''
+    """
+
     with open('rotasFavoritas.json', 'r', encoding='utf-8') as arquivo: 
         rotasFav = json.load(arquivo)
 
@@ -192,9 +195,10 @@ def editarRotaFav():
         json.dump(rotasFav, arquivo, indent=4, ensure_ascii=False)
 
 def excluirRota():
-    '''
+    """
         Função feita para exclusão de rotas favoritas previamente cadastradas em nosso sistema.
-    '''
+    """
+
     with open('testes/testeCadastroLogin/rotasFavoritas.json', 'r', encoding='utf-8') as arquivo: 
         rotasFav = json.load(arquivo)
         # Para facilitar a lógica do programa caso encontre ou não o título desejado pelo usuário
@@ -244,3 +248,39 @@ def excluirRota():
         json.dump(rotasFav, arquivo, indent=4, ensure_ascii=False)
 
 # Programa principal
+
+'''
+    Enquanto o usuário não tiver logado, o usuário não poderá acessar as demais funcionalidades da aplicação
+    segundo o estudo de caso e requisitos da aplicação definido pela Tech Girls.
+'''
+while logado == False:
+    print("Olá! Seja bem vindo(a) à Tiana! Para prosseguir, é necessário que você esteja logado em nosso sistema!")
+    print("Escolha a opção abaixo para continuar")
+    print("\n 1 - Login \n 2 - Cadastro \n 3 - Encerrar à Tiana \n")
+    try: # Tratamento de erros para evitar paradas inesperadas durante o programa
+        opcaoInicial = int(input("Escolha uma das opções acima: "))
+
+        if (opcaoInicial < 1) or (opcaoInicial > 3):
+            raise TypeError
+        
+        elif opcaoInicial == 1:
+            # Opção de login
+            print("Em breve...")
+            logado = True
+
+        elif opcaoInicial == 2:
+            # Opção de cadastro
+            print("Em breve...")
+            
+        elif opcaoInicial == 3:
+            # Encerra a Tiana sem continuar com as funcionalidades
+            print("Agradecemos por utilizar à Tiana!")
+            break
+        
+    except ValueError:
+        print("Por favor, informe somente números dentre as opções disponíveis!")
+        time.sleep(1)
+
+    except TypeError:
+        print("Por favor, digite uma opção válida para prosseguir.")
+        time.sleep(1)
