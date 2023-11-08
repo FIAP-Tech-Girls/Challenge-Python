@@ -30,14 +30,19 @@ def cadastro():
     usuarioExiste = False
     for usuario in usuarios:
          if usuario['email'] == email: # Caso o usuário já tenha seu email cadastrado em nosso sistema
-              usuarioExiste = True
-              print("O email já está registrado em nosso sistema! Por favor, realize seu login com email e senha!")
-
+            usuarioExiste = True
+            print("O email já está registrado em nosso sistema! Por favor, realize seu login com email e senha!")
+            time.sleep(1)
+              
     if not usuarioExiste: # Caso o usuário não tenha seu email cadastrado em nosso sistema
         nome: str = input("Digite seu nome completo: ").title()
+        time.sleep(1)
+
         apelido: str = input("Digite como deseja ser chamado durante a nossa conversa: ").title()
-    
+        time.sleep(1)
+
         senha: str = getpass.getpass("Digite sua senha (ela está ocultada pela sua segurança): ")
+        time.sleep(1)
 
         salt = bcrypt.gensalt() # gera um salt aleatório
 
@@ -57,7 +62,7 @@ def cadastro():
                 json.dump(usuarios, arquivoJSON, indent=4, ensure_ascii=False)
 
         print("Cadastro feito com sucesso! Basta realizar seu login para acessar à Tiana!")
-
+        time.sleep(1)
         return cadastro
 
 def login(email: str, senha: str):
@@ -72,24 +77,29 @@ def login(email: str, senha: str):
         
     global apelidoUsuario # Para facilitar comunicação com o usuário logado
     global emailUsuario # Para facilitar pegar o email nas demais funções
+
     encontrouUsuario = False
     senhaCorreta = False
+    
     for usuario in usuarios:
         emailUsuario = usuario['email']
         if emailUsuario == email:
             encontrouUsuario = True
             if bcrypt.checkpw(senha.encode("utf-8"), usuario["senha"].encode("utf-8")):
                 apelidoUsuario = usuario["apelido"]
+                time.sleep(1)
                 print(f"Bem-vindo, {apelidoUsuario}!")  
                 senhaCorreta = True
                 return True
             
     if not encontrouUsuario: # caso não exista esse cadastro em nosso sistema
         print("Email não cadastrado em nosso sistema. Por favor, verifique o email digitado.")
+        time.sleep(1)
         return False
     
     if encontrouUsuario and not senhaCorreta: # Caso exista o email mas a senha está incorreta
         print("A senha está incorreta! Tente novamente!")
+        time.sleep(1)
         return False
     
 def rotaFavorita(emailUsuario: str, pontoOrigem: str, pontoDestino: str, tituloRotaFav: str):
@@ -140,6 +150,8 @@ def editarRotaFav():
 
     if emailUsuario not in rotasFav: # Caso o usuário não possua nenhuma rota favorita
         print("Você não possui rotas favoritas cadastradas! Que tal cadastrar algumas? ")
+        time.sleep(1)
+
     else: # Caso possua
         titulo = input("Qual título da rota que você deseja editar? \n")
         for item in rotasFav[emailUsuario].values():
@@ -157,39 +169,55 @@ def editarRotaFav():
                     if editarOpcao == 1:
                         # Para editar título
                         item["Titulo"] = input("Digite o novo título da rota favorita: ")
+                        time.sleep(1)
                         print("Título atualizado com sucesso!")
+                        time.sleep(1)
 
                     if editarOpcao == 2:
                         # Para editar o ponto de origem 
                         item["Ponto Origem"] = input("Digite o novo ponto de origem da rota favorita: ")
+                        time.sleep(1)
                         print("Ponto de origem atualizado com sucesso!")
+                        time.sleep(1)
 
                     if editarOpcao == 3:
                         # Para editar o ponto de destino 
                         item["Ponto Destino"] = input("Digite o novo ponto de origem da rota favorita: ")
+                        time.sleep(1)
                         print("Ponto de destino atualizado com sucesso!")
+                        time.sleep(1)
 
                     if editarOpcao == 4:
                         # Para editar o ponto de origem e destino 
                         item["Ponto Origem"] = input("Digite o novo ponto de origem da rota favorita: ")
+                        time.sleep(1)
                         item["Ponto Destino"] = input("Digite o novo ponto de destino da rota favorita: ")
+                        time.sleep(1)
                         print("Ponto de origem e destino atualizados com sucesso!")
+                        time.sleep(1)
 
                     if editarOpcao == 5:
                         # Para editar título, ponto de origem e destino
                         item["Titulo"] = input("Digite o novo título da rota favorita: ")
+                        time.sleep(1)
                         item["Ponto Origem"] = input("Digite o novo ponto de origem da rota favorita: ")
+                        time.sleep(1)
                         item["Ponto Destino"] = input("Digite o novo ponto de destino da rota favorita: ")
+                        time.sleep(1)
                         print("Título, ponto de origem e destino atualizados com sucesso!")
+                        time.sleep(1)
 
                 except ValueError: # caso valor diferente de inteiro
                     print("Por favor, informe somente números dentre as opções disponíveis!")
+                    time.sleep(1)
                     
                 except TypeError: # caso opção não existente no sistema
                     print("Por favor, digite uma opção válida para prosseguir.")
+                    time.sleep(1)
 
         if not encontrouRota: # caso a rota chamada não exista no sistema
             print(f"A rota para o título {titulo} não existe! Tente novamente, ou cadastre em nosso sistema para editar.")
+            time.sleep(1)
 
     with open('rotasFavoritas.json', 'w', encoding='utf-8') as arquivo: 
         json.dump(rotasFav, arquivo, indent=4, ensure_ascii=False)
@@ -206,9 +234,11 @@ def excluirRota():
 
     if emailUsuario not in rotasFav: # Caso o usuário não possua nenhuma rota favorita
         print("Você não possui rotas favoritas cadastradas! Que tal cadastrar algumas?")
+        time.sleep(1)
 
     else: # Caso possua
         titulo = input("Qual título da rota que você deseja excluir? \n")
+        time.sleep(1)
         chaveRemover = []
         for chave, item in rotasFav[emailUsuario].items():
             if item["Titulo"] == titulo:
@@ -230,19 +260,23 @@ def excluirRota():
 
                 except ValueError: # caso valor diferente de inteiro
                     print("Por favor, informe somente números dentre as opções disponíveis!")
+                    time.sleep(1)
                     
                 except TypeError: # caso opção não existente no sistema
                     print("Por favor, digite uma opção válida para prosseguir.")
+                    time.sleep(1)
 
         for chave in chaveRemover:
             del rotasFav[emailUsuario][chave]
             print("Rota removida com sucesso!")
+            time.sleep(1)
 
         if not rotasFav[emailUsuario]:  # Verifique se o usuário não possui mais rotas favoritas
             del rotasFav[emailUsuario] # Deleta do arquivo JSON
 
         if not encontrouRota: # caso a rota chamada não exista no sistema
             print(f"A rota para o título {titulo} não existe! Tente novamente, ou cadastre em nosso sistema para editar.")
+            time.sleep(1)
 
     with open('testes/testeCadastroLogin/rotasFavoritas.json', 'w', encoding='utf-8') as arquivo: 
         json.dump(rotasFav, arquivo, indent=4, ensure_ascii=False)
@@ -265,18 +299,31 @@ while logado == False:
         
         elif opcaoInicial == 1:
             # Opção de login
-            print("Em breve...")
+            emailLogin: str = input("Digite seu email: ")
+            senhaLogin: str = getpass.getpass("Digite sua senha (ela está ocultada para sua segurança): ")
+            time.sleep(1)
+            login(emailLogin, senhaLogin)
+            time.sleep(1)
             logado = True
 
         elif opcaoInicial == 2:
             # Opção de cadastro
-            print("Em breve...")
+            cadastro()
+            time.sleep(1)
+            print("Faça seu login, para sua segurança, para prosseguir com à Tiana")
+            time.sleep(1)
+            emailLogin: str = input("Digite seu email: ")
+            senhaLogin: str = getpass.getpass("Digite sua senha (ela está ocultada para sua segurança): ")
+            time.sleep(1)
+            login(emailLogin, senhaLogin)
+            time.sleep(1)
+            logado = True        
             
         elif opcaoInicial == 3:
             # Encerra a Tiana sem continuar com as funcionalidades
             print("Agradecemos por utilizar à Tiana!")
             break
-        
+
     except ValueError:
         print("Por favor, informe somente números dentre as opções disponíveis!")
         time.sleep(1)

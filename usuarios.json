@@ -22,5 +22,11 @@
         "apelido": "Card",
         "email": "alucard@gmail.com",
         "senha": "$2b$12$Q80Ovq8EeUOBa5.23/YY2OP3yVIz7bacYaSc7Vgkzn56JEEH/ZkCS"
+    },
+    {
+        "nome": "Vlad Dracula",
+        "apelido": "Dracula",
+        "email": "dracula@gmail.com",
+        "senha": "$2b$12$3DNt7QMF93i6np8F2BJCeexK6SE/ZkhMDmraSHYhbpINrPXWlQXuu"
     }
 ]
