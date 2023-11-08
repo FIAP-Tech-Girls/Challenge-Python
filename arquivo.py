@@ -121,6 +121,7 @@ def rotaFavorita(emailUsuario: str, pontoOrigem: str, pontoDestino: str, tituloR
     
     rotasUsuario = rotasFav[emailUsuario]
     rota = {
+        "Titulo": tituloRotaFav,
         "Ponto Origem": pontoOrigem,
         "Ponto Destino": pontoDestino
     }
