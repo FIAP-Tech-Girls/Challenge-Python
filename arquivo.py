@@ -332,7 +332,7 @@ while logado == False:
         print("Por favor, digite uma opção válida para prosseguir.")
         time.sleep(1)
 
-# Caso o usuário esteja logado, podemos prosseguir com o looping infinito
+# Caso o usuário esteja logado, podemos prosseguir com o looping infinito do programa principal
 if logado == True:
     while True:
         print("Teste")
