@@ -300,6 +300,24 @@ def listarRotasFavoritas():
             print(f"  Ponto de Destino: {item['Ponto Destino']}")
             print("-----------------------------------")
 
+def menuOpcoes():
+    """
+        Função criada para o menu de opções, para facilitar o tratamento de erros e deixar o código mais
+        limpo na parte da programação principal.
+    """
+    print("\n 1 - Participar da entrevista sobre qualificação do trânsito; \n 2 - Configurar preferências de rotas \n 3 - Visualizar rotas alternativas de destino \n 4 - Situação de determinada rota \n 5 - Feedback sobre determinada rota \n 6 - Favoritar uma rota \n 7 - Listar rotas favoritas \n 8 - Editar rotas favoritas \n 9 - Excluir rotas favoritas \n 10 - Feedback sobre a Tiana \n 11 - Configurar perfil \n 12 - Encerrar Tiana \n")
+    try: # Tratamento de erros para evitar paradas indesejadas 
+        opcao = int(input("Informe a opção desejada: "))
+        if (opcao < 1) or (opcao > 12):
+            raise TypeError
+        return opcao
+    except ValueError:
+        print("Por favor, informe somente números dentre as opções disponíveis!")
+        time.sleep(1)
+    except TypeError:
+        print("Por favor, digite uma opção válida para prosseguir.")
+        time.sleep(1)
+
 # Programa principal
 
 '''
@@ -321,9 +339,10 @@ while logado == False:
             emailLogin: str = input("Digite seu email: ")
             senhaLogin: str = getpass.getpass("Digite sua senha (ela está ocultada para sua segurança): ")
             time.sleep(1)
-            login(emailLogin, senhaLogin)
+            loginUsuario = login(emailLogin, senhaLogin)
             time.sleep(1)
-            logado = True
+            if loginUsuario == True: # caso deu tudo certo no login (não houve nenhum dado errado!)
+                logado = True
 
         elif opcaoInicial == 2:
             # Opção de cadastro
@@ -334,9 +353,10 @@ while logado == False:
             emailLogin: str = input("Digite seu email: ")
             senhaLogin: str = getpass.getpass("Digite sua senha (ela está ocultada para sua segurança): ")
             time.sleep(1)
-            login(emailLogin, senhaLogin)
+            loginUsuario = login(emailLogin, senhaLogin)
             time.sleep(1)
-            logado = True        
+            if loginUsuario == True: # caso deu tudo certo no login (não houve nenhum dado errado!)
+                logado = True        
             
         elif opcaoInicial == 3:
             # Encerra a Tiana sem continuar com as funcionalidades
@@ -353,6 +373,47 @@ while logado == False:
 
 # Caso o usuário esteja logado, podemos prosseguir com o looping infinito do programa principal
 if logado == True:
+    print(f"Olá {apelidoUsuario}! Seja bem vindo(a)!")
+    time.sleep(1)
+    print(f"Como podemos te auxiliar hoje?")
+    time.sleep(1)
     while True:
-        print("Teste")
-        break
+        opcao = menuOpcoes()
+        if opcao == 1:
+            print("Em breve...")
+            time.sleep(1)
+        elif opcao == 2:
+            print("Em breve...")
+            time.sleep(1)
+        elif opcao == 3:
+            print("Em breve...")
+            time.sleep(1)
+        elif opcao == 4:
+            print("Em breve...")
+            time.sleep(1)
+        elif opcao == 5:
+            print("Em breve...")
+            time.sleep(1)
+        elif opcao == 6:
+            print("Em breve...")
+            time.sleep(1)
+        elif opcao == 7:
+            print("Em breve...")
+            time.sleep(1)
+        elif opcao == 8:
+            print("Em breve...")
+            time.sleep(1)
+        elif opcao == 9:
+            print("Em breve...")
+            time.sleep(1)
+        elif opcao == 10:
+            print("Em breve...")
+            time.sleep(1)
+        elif opcao == 11:
+            print("Em breve...")
+            time.sleep(1)
+        elif opcao == 12:
+            print("Obrigada por utilizar a Tiana!")
+            print("Deslogando...")
+            time.sleep(1)
+            break
