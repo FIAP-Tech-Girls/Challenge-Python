@@ -380,39 +380,51 @@ if logado == True:
     while True:
         opcao = menuOpcoes()
         if opcao == 1:
+            # Entrevista sobre qualificação do trânsito
             print("Em breve...")
             time.sleep(1)
         elif opcao == 2:
+            # Configurar preferência de rotas
             print("Em breve...")
             time.sleep(1)
         elif opcao == 3:
+            # Visualizar rotas alternativas
             print("Em breve...")
             time.sleep(1)
         elif opcao == 4:
+            # Situação de determinada rota 
             print("Em breve...")
             time.sleep(1)
         elif opcao == 5:
+            # Feedback sobre determinada rota pelos usuários
             print("Em breve...")
             time.sleep(1)
         elif opcao == 6:
-            print("Em breve...")
+            # Favoritar uma rota
+            pontoOrigem = input("Digite o ponto de origem: ")
             time.sleep(1)
         elif opcao == 7:
+            # Listar todas as rotas favoritas do usuário
             print("Em breve...")
             time.sleep(1)
         elif opcao == 8:
+            # Editar rota favorita do usuário
             print("Em breve...")
             time.sleep(1)
         elif opcao == 9:
+            # Excluir rota favorita do usuário
             print("Em breve...")
             time.sleep(1)
         elif opcao == 10:
+            # Feedback sobre Tiana
             print("Em breve...")
             time.sleep(1)
         elif opcao == 11:
+            # Configurar perfil
             print("Em breve...")
             time.sleep(1)
         elif opcao == 12:
+            # Encerrar a Tiana
             print("Obrigada por utilizar a Tiana!")
             print("Deslogando...")
             time.sleep(1)
