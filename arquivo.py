@@ -14,6 +14,10 @@ usuarios = [] # utilizada na função de cadastro e login para acesso ao arquivo
 
 logado = False
 
+chaveAPI = '5b3ce3597851110001cf62480b2433fb93fa4bf4bcda5d0487e0ee7f' # futuramente, tratar isso para ter mais segurança e não ser de fácil acesso pros usuários
+
+client = openrouteservice.Client(key=chaveAPI) # Inicializa o cliente OpenRouteService
+
 # Funções
 
 def cadastro():
@@ -392,8 +396,34 @@ if logado == True:
 
         elif opcao == 3:
             # Visualizar rotas alternativas
-            print("Em breve...")
-            time.sleep(1)
+            pontoPartida = input("Informe o local de partida, informe, por favor, como exemplo 'Avenida Paulista, São Paulo, Brasil': ") 
+            destino = input("Informe o local de destino, informe, por favor, como exemplo 'Avenida Paulista, São Paulo, Brasil': ")
+
+            coordenadas_partida = client.pelias_search(pontoPartida)['features'][0]['geometry']['coordinates']
+            coordenadas_destino = client.pelias_search(destino)['features'][0]['geometry']['coordinates']
+
+            rota = client.directions(
+                coordinates=[coordenadas_partida, coordenadas_destino],
+                profile='driving-car',  # Você pode usar 'foot-walking' para rota a pé -> futuramente pensar em algo
+                format='geojson',
+            )
+
+            if 'features' in rota:
+                # Crie um mapa com o folium
+                mapa = folium.Map(location=[coordenadas_partida[1], coordenadas_partida[0]], zoom_start=15)
+
+                # Adicione a rota ao mapa
+                folium.GeoJson(rota).add_to(mapa)
+
+                # Abra o mapa em um navegador
+                mapa.save('rota.html')
+                webbrowser.open_new_tab('rota.html') # abre o mapa automaticamente
+
+                print("Mapa da rota foi salvo como 'rota.html'.")
+                time.sleep(1)
+            else:
+                print("Não foi possível encontrar uma rota.")
+                time.sleep(1)
 
         elif opcao == 4:
             # Situação de determinada rota 
@@ -402,7 +432,34 @@ if logado == True:
 
         elif opcao == 5:
             # Feedback sobre determinada rota pelos usuários
-            print("Em breve...")
+            print(f"Qual é o caminho que você deseja dar feedback, {apelidoUsuario}?")
+            caminho = input("Digite aqui: ")
+            print(f"Qual o problema com o {caminho}? Selecione uma opção abaixo:")
+            print(f"\n 1 - Reportar acidente; \n 2 - Reportar congestionamento \n 3 - Outro")
+
+            try:
+                feedbackCaminho = int(input("Informe a opção desejada: "))
+                if (feedbackCaminho < 1) or (feedbackCaminho > 3):
+                    raise TypeError
+                
+                if feedbackCaminho == 1:
+                    print(f"{apelidoUsuario}, agradecemos pelo seu aviso! Iremos avisar os demais usuários!")
+                    time.sleep(1)
+                elif feedbackCaminho == 2:
+                    print(f"{apelidoUsuario}, agradecemos pelo seu aviso! Iremos avisar os demais usuários!")
+                    time.sleep(1)
+                elif feedbackCaminho == 3:
+                    feedbackOutro = input("Conte-nos com detalhe sobre o que aconteceu: ")
+                    time.sleep(1)
+                    print(f"{apelidoUsuario}, agradecemos pelo seu feedback! Iremos avisar os demais usuários!")
+                    time.sleep(1)
+
+            except ValueError:
+                print("Por favor, informe somente números dentre as opções disponíveis!")
+                time.sleep(1)
+            except TypeError:
+                ("Por favor, digite uma opção válida para prosseguir.")
+                time.sleep(1)
             time.sleep(1)
 
         elif opcao == 6:
@@ -430,7 +487,10 @@ if logado == True:
 
         elif opcao == 10:
             # Feedback sobre Tiana
-            print("Em breve...")
+            print(f"{apelidoUsuario} sua opinião é muito importante para nós! Escreva sua avaliação que iremos receber, ler e aprimorar.")
+            feedbackTiana = input("Digite seu feedback \n")
+            time.sleep(1)
+            print("Agradecemos a sua avaliação e preferência! Conte sempre com a gente!")
             time.sleep(1)
 
         elif opcao == 11:
