@@ -227,7 +227,7 @@ def excluirRota():
         Função feita para exclusão de rotas favoritas previamente cadastradas em nosso sistema.
     """
 
-    with open('testes/testeCadastroLogin/rotasFavoritas.json', 'r', encoding='utf-8') as arquivo: 
+    with open('rotasFavoritas.json', 'r', encoding='utf-8') as arquivo: 
         rotasFav = json.load(arquivo)
         # Para facilitar a lógica do programa caso encontre ou não o título desejado pelo usuário
     encontrouRota = False 
@@ -278,7 +278,7 @@ def excluirRota():
             print(f"A rota para o título {titulo} não existe! Tente novamente, ou cadastre em nosso sistema para editar.")
             time.sleep(1)
 
-    with open('testes/testeCadastroLogin/rotasFavoritas.json', 'w', encoding='utf-8') as arquivo: 
+    with open('rotasFavoritas.json', 'w', encoding='utf-8') as arquivo: 
         json.dump(rotasFav, arquivo, indent=4, ensure_ascii=False)
 
 def listarRotasFavoritas():
@@ -294,6 +294,7 @@ def listarRotasFavoritas():
     else: # Verifica se o usuário tem rotas favoritas
         print("Aqui estão suas rotas favoritas:")
         for chave, item in rotasFav[emailUsuario].items():
+            print("-----------------------------------")
             print(f"Rota {chave}:")
             print(f"  Título: {item['Titulo']}")
             print(f"  Ponto de Origem: {item['Ponto Origem']}")
@@ -383,46 +384,60 @@ if logado == True:
             # Entrevista sobre qualificação do trânsito
             print("Em breve...")
             time.sleep(1)
+
         elif opcao == 2:
             # Configurar preferência de rotas
             print("Em breve...")
             time.sleep(1)
+
         elif opcao == 3:
             # Visualizar rotas alternativas
             print("Em breve...")
             time.sleep(1)
+
         elif opcao == 4:
             # Situação de determinada rota 
             print("Em breve...")
             time.sleep(1)
+
         elif opcao == 5:
             # Feedback sobre determinada rota pelos usuários
             print("Em breve...")
             time.sleep(1)
+
         elif opcao == 6:
             # Favoritar uma rota
-            pontoOrigem = input("Digite o ponto de origem: ")
+            pontoOrigem: str = input("Digite o ponto de origem: ")
+            pontoDestino: str = input("Digite o ponto de destino: ")
+            tituloRota: str = input("Digite o título da rota: ")
+            rotaFavorita(emailUsuario, pontoOrigem, pontoDestino, tituloRota)
             time.sleep(1)
+
         elif opcao == 7:
             # Listar todas as rotas favoritas do usuário
-            print("Em breve...")
+            listarRotasFavoritas()
             time.sleep(1)
+
         elif opcao == 8:
             # Editar rota favorita do usuário
-            print("Em breve...")
+            editarRotaFav()
             time.sleep(1)
+
         elif opcao == 9:
             # Excluir rota favorita do usuário
-            print("Em breve...")
+            excluirRota()
             time.sleep(1)
+
         elif opcao == 10:
             # Feedback sobre Tiana
             print("Em breve...")
             time.sleep(1)
+
         elif opcao == 11:
             # Configurar perfil
             print("Em breve...")
             time.sleep(1)
+
         elif opcao == 12:
             # Encerrar a Tiana
             print("Obrigada por utilizar a Tiana!")

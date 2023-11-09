@@ -1,23 +1,5 @@
 [
     {
-        "nome": "Teste Arquivo Final",
-        "apelido": "Teste",
-        "email": "teste@teste.com",
-        "senha": "$2b$12$HzCZ0lyarCmXREG05pKxQOJGZI7rBLTqdd6i4XEvJWKxi1bLV9GS2"
-    },
-    {
-        "nome": "Teste Final 2",
-        "apelido": "Testefinal@Teste.Com",
-        "email": "testefinal@teste.com",
-        "senha": "$2b$12$NxieaWxuBLINSk89hJeun.rpPNgql8LJkKrKVDKIBb6.KeCnqk6zm"
-    },
-    {
-        "nome": "Testando Com Tipo",
-        "apelido": "Teste",
-        "email": "teste@tipo.com",
-        "senha": "$2b$12$Yj1PWsTlw6c5d5TTY3pHY.0kjr0cWBOvgWCtUbDPwA8r09ALX4.Pe"
-    },
-    {
         "nome": "Alucard",
         "apelido": "Card",
         "email": "alucard@gmail.com",
@@ -28,5 +10,11 @@
         "apelido": "Dracula",
         "email": "dracula@gmail.com",
         "senha": "$2b$12$3DNt7QMF93i6np8F2BJCeexK6SE/ZkhMDmraSHYhbpINrPXWlQXuu"
+    },
+    {
+        "nome": "Yone Heartsteel",
+        "apelido": "Yone",
+        "email": "yoneheartsteel@gmail.com",
+        "senha": "$2b$12$pu9rO9KoaInidaaGKRtJleLP83iNHdKhq6pD3193SbroZyiaA3E9e"
     }
 ]
