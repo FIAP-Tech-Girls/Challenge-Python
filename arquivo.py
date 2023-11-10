@@ -77,7 +77,7 @@ def cadastro():
         time.sleep(1)
         return cadastro
 
-def login(email: str, senha: str):
+def login():
     """
         Função criada para simular o login do usuário através do arquivo JSON contendo os dados dos usuários
         e a senha criptografada, em que o próprio sistema consegue descriptografar e fazer o acesso caso os dados
@@ -93,25 +93,28 @@ def login(email: str, senha: str):
     encontrouUsuario = False
     senhaCorreta = False
     
+    email: str = input("Digite seu email: ")
+
     for usuario in usuarios:
         emailUsuario = usuario['email']
         if emailUsuario == email:
             encontrouUsuario = True
+            senha: str = getpass.getpass("Digite sua senha: ")
             if bcrypt.checkpw(senha.encode("utf-8"), usuario["senha"].encode("utf-8")):
                 apelidoUsuario = usuario["apelido"]
-                time.sleep(1)
+                #time.sleep(1)
                 print(f"Bem-vindo, {apelidoUsuario}!")  
                 senhaCorreta = True
                 return True
             
     if not encontrouUsuario: # caso não exista esse cadastro em nosso sistema
         print("Email não cadastrado em nosso sistema. Por favor, verifique o email digitado.")
-        time.sleep(1)
+        #time.sleep(1)
         return False
     
     if encontrouUsuario and not senhaCorreta: # Caso exista o email mas a senha está incorreta
         print("A senha está incorreta! Tente novamente!")
-        time.sleep(1)
+        #time.sleep(1)
         return False
     
 def rotaFavorita(emailUsuario: str, pontoOrigem: str, pontoDestino: str, tituloRotaFav: str):
@@ -466,10 +469,7 @@ while logado == False:
         
         elif opcaoInicial == 1:
             # Opção de login
-            emailLogin: str = input("Digite seu email: ")
-            senhaLogin: str = getpass.getpass("Digite sua senha (ela está ocultada para sua segurança): ")
-            time.sleep(1)
-            loginUsuario = login(emailLogin, senhaLogin)
+            loginUsuario = login()
             time.sleep(1)
             if loginUsuario == True: # caso deu tudo certo no login (não houve nenhum dado errado!)
                 logado = True
