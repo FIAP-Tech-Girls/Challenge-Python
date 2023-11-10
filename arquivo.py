@@ -10,6 +10,14 @@ import json # para abrir arquivos json externos da aplicação
 
 # Variáveis criadas anteriormente para inicialização do programa
 
+categoriasCNH = {
+    'A': 'Categoria A - Motocicletas',
+    'B': 'Categoria B - Veículos de passeio',
+    'C': 'Categoria C - Veículos de carga',
+    'D': 'Categoria D - Ônibus',
+    'E': 'Categoria E - Veículos de carga pesada com reboque'
+}
+
 usuarios = [] # utilizada na função de cadastro e login para acesso ao arquivo externo de usuários
 
 logado = False
@@ -305,6 +313,73 @@ def listarRotasFavoritas():
             print(f"  Ponto de Destino: {item['Ponto Destino']}")
             print("-----------------------------------")
 
+def preferenciaRotas():
+    """
+        Função criada para simular preferências de rota através das respostas do usuário.
+    """
+
+    with open('preferenciaRotas.json', 'r', encoding='utf-8') as arquivo: 
+        preferencia = json.load(arquivo)
+
+    print("Vamos lá!")
+
+    if emailUsuario not in preferencia: # Caso o usuário não possua rotas favoritas cadastradas, já cria o dicionário
+        preferencia[emailUsuario] = {}
+
+    if preferencia:
+        print("Vias com Ônibus")
+        try:
+            print("\n 1 - Não me importo \n 2 - Não desejo \n")
+            pref1 = int(input("Informe a opção desejada: "))
+            if (pref1 < 1) or (pref1 > 2):
+                raise TypeError
+
+            print("Vias com comércio")
+            print("\n 1 - Não me importo \n 2 - Não desejo \n")
+            pref2 = int(input("Informe a opção desejada: "))
+            if (pref2 < 1) or (pref2 > 2):
+                raise TypeError
+            
+            print("Vias com postos de gasolina")
+            print("\n 1 - Não me importo \n 2 - Não desejo \n")
+            pref3 = int(input("Informe a opção desejada: "))
+            if (pref3 < 1) or (pref3 > 2):
+                raise TypeError
+            
+            print("Vias com muitos semafóros")
+            print("\n 1 - Não me importo \n 2 - Não desejo \n")
+            pref4 = int(input("Informe a opção desejada: "))
+            if (pref4 < 1) or (pref4 > 2):
+                raise TypeError
+            
+            print("Vias com pedágios")
+            print("\n 1 - Não me importo \n 2 - Não desejo \n")
+            pref5 = int(input("Informe a opção desejada: "))
+            if (pref5 < 1) or (pref5 > 2):
+                raise TypeError
+            
+            preferenciaRota = {
+                "Vias com ônibus": pref1,
+                "Vias com comércios": pref2,
+                "Vias com posto de gasolinas": pref3,
+                "Vias com muitos semafóros": pref4,
+                "Vias com pedágios": pref5
+            }
+
+            preferencia[emailUsuario] = preferenciaRota
+
+            with open('preferenciaRotas.json', 'w', encoding='utf-8') as arquivo: 
+                json.dump(preferencia, arquivo, indent=4, ensure_ascii=False)
+
+        except ValueError:
+            print("Por favor, informe somente números dentre as opções disponíveis!")
+            time.sleep(1)
+
+        except TypeError:
+            print("Por favor, digite uma opção válida para prosseguir.")
+            time.sleep(1)
+
+
 def menuOpcoes():
     """
         Função criada para o menu de opções, para facilitar o tratamento de erros e deixar o código mais
@@ -386,12 +461,119 @@ if logado == True:
         opcao = menuOpcoes()
         if opcao == 1:
             # Entrevista sobre qualificação do trânsito
-            print("Em breve...")
-            time.sleep(1)
+            print(f"{apelidoUsuario}, para prosseguirmos com a sua entrevista, por favor, informe-nos")
+            print("Você dirige? \n 1 - Sim \n 2 - Não")
+            opcaoEntrevista = input("Digite aqui a opção escolhida: ")
+
+            match opcaoEntrevista:
+
+                case "1":
+                    print("Qual a categoria da sua CNH? Para auxiliar, veja a lista abaixo!")
+                    for codigo, descricao in categoriasCNH.items():
+                        print(f"{codigo}: {descricao}")
+                    categoriaCNH = input("Informe aqui a sua categoria presente na carteira de motorista: ")
+
+                    try:
+                            print("Você dirige com mais frequência a trabalho ou a diversão (sozinho, com sua família, amigos, entre outros?) Veja no menu de opções:")
+
+                            print("1 - Dirijo mais a trabalho.")
+                            print("2 - Dirijo mais a diversão.")
+
+                            opcaoDirige = int(input("Digite aqui a opção escolhida: "))
+
+                            # Para saber mais sobre o que a pessoa trabalha 
+                            if opcaoDirige == 1:
+                                print("Para qual trabalho você mais utiliza seu veículo?")
+
+                                print("1 - Uber/Táxi")
+                                print("2 - Entregador")
+                                print("3 - Outro.")
+
+                                opcaoTrabalho = int(input("Digite aqui a opção escolhida: "))
+
+                                if opcaoTrabalho == 3:
+                                    outroTrabalho = input("Informe qual o trabalho que você utiliza seu automóvel: ")
+                            
+                            print("Você dirige com mais frequência sozinho ou acompanhado?")
+
+                            print("1 - Dirijo mais sozinho.")
+                            print("2 - Dirijo mais acompanhado.")
+
+                            sozinhoouacompanhado = int(input("Digite aqui a opção escolhida: "))
+
+                            print("Em qual período você costuma dirigir com mais frequência?")
+
+                            print("\n 1 - Manhã \n 2 - Tarde \n 3 - Noite \n ")
+
+                            periodo = int(input("Digite aqui a opção escolhida: "))
+
+                            print("Nesse período, você pega muito trânsito?")
+
+                            print("\n 1 - Sim \n 2 - Não \n")
+
+                            transito = int(input("Digite aqui a opção escolhida: "))
+
+                            if transito == 2:
+                                print("Em qual período você costuma pegar mais trânsito?")
+
+                                print("\n 1 - Manhã \n 2 - Tarde \n 3 - Noite \n ")
+
+                                periodoTransito = int(input("Digite aqui a opção escolhida: "))
+
+                            print("Como você costuma reagir ao trânsito?")
+
+                            reacaoTransito = input("Sinta-se livre para escrever como se sente, num limite de até 1000 caracteres: ")
+                    except ValueError:
+                        print("Por favor, informe somente números dentre as opções disponíveis!")
+                        time.sleep(1)
+                    except TypeError:
+                        print("Por favor, digite uma opção válida para prosseguir.")
+                        time.sleep(1)
+
+                case "2":
+                    try:
+                        print("Qual meio de transporte você utiliza com mais frequência? Veja no menu de opções:")
+
+                        print("\n 1 - Uber/Táxi \n 2 - Carona (amigos(as), marido/esposa, entre outros) \n 3 - Transporte Público \n")
+
+                        opcaoTransporte = int(input("Digite aqui apenas uma opção: "))
+
+                        print("Em qual período você costuma sair com mais frequência?")
+
+                        print("\n 1 - Manhã \n 2 - Tarde \n 3 - Noite \n ")
+
+                        periodoSair = int(input("Digite aqui apenas uma opção: "))
+
+                        print("Nesse período, você costuma pegar muito trânsito?")
+
+                        print("\n 1 - Sim \n 2 - Não \n")
+                            
+                        transitoPeriodo = int(input("Digite aqui apenas uma opção: "))
+
+                        if transitoPeriodo == 2:
+                            print("Então, em qual dos períodos abaixo você costuma pegar muito trânsito?")
+
+                            print("\n 1 - Manhã \n 2 - Tarde \n 3 - Noite \n ")
+                            
+                        print("Como você costuma reagir ao trânsito?")
+
+                        reacaoTransito = input("Sinta-se livre para escrever como se sente, num limite de até 1000 caracteres: ")
+                    
+                    except ValueError:
+                        print("Por favor, informe somente números dentre as opções disponíveis!")
+                        time.sleep(1)
+                    except TypeError:
+                        print("Por favor, digite uma opção válida para prosseguir.")
+                        time.sleep(1)
+                        
+                case _:
+                    print("Opção inválida. Tente novamente!")
+
+            print(f"Agradecemos por suas respostas {apelidoUsuario}!")
 
         elif opcao == 2:
             # Configurar preferência de rotas
-            print("Em breve...")
+            preferenciaRotas()
             time.sleep(1)
 
         elif opcao == 3:
