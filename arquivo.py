@@ -379,6 +379,56 @@ def preferenciaRotas():
             print("Por favor, digite uma opção válida para prosseguir.")
             time.sleep(1)
 
+def edicaoCadastro():
+    """
+        Função criada para realizar a edição do cadastro do usuário conforme sua decisão,
+        atualizando no JSON final.
+    """
+    global apelidoUsuario
+
+    with open('usuarios.json', 'r', encoding='utf-8') as arquivo: 
+        usuarios = json.load(arquivo)
+
+    for usuario in usuarios:
+        if usuario['email'] == emailUsuario:
+            print("O que você deseja editar em seu cadastro?")
+            print("\n 1 - Nome \n 2 - Apelido \n 3 - Senha \n")
+            try: # Tratamento de erros para evitar opções indesejadas e paradas inesperadas
+                edicaoUsuario = int(input("O que você deseja editar? "))
+                if (edicaoUsuario < 1) or (edicaoUsuario > 3):
+                    raise TypeError
+                
+                elif edicaoUsuario == 1: 
+                    # Alterar o nome
+                    usuario['nome'] = input("Informe o novo nome: ")
+                    print("Nome atualizado com sucesso!")
+                elif edicaoUsuario == 2:
+                    # Alterar o apelido
+                    novoApelido = input("Informe o novo apelido: ")
+                    usuario['apelido'] = novoApelido
+                    apelidoUsuario = novoApelido
+                    print(f"Apelido atualizado com sucesso!")
+                elif edicaoUsuario == 3:
+                    # Alterar a senha
+                    novaSenha: str = getpass.getpass("Digite sua senha (ela está ocultada pela sua segurança): ")
+
+                    salt = bcrypt.gensalt() # gera um salt aleatório
+
+                    hashSenha = bcrypt.hashpw(novaSenha.encode("utf-8"), salt)
+                    hashSenhaString = hashSenha.decode('utf-8')
+
+                    usuario['senha'] = hashSenhaString
+
+                    print("Senha atualizada com sucesso!")           
+
+            except ValueError: # caso valor diferente de inteiro
+                print("Por favor, informe somente números dentre as opções disponíveis!")
+                
+            except TypeError: # caso opção não existente no sistema
+                print("Por favor, digite uma opção válida para prosseguir.")
+
+    with open('usuarios.json', 'w', encoding='utf-8') as arquivo: 
+        json.dump(usuarios, arquivo, indent=4, ensure_ascii=False)
 
 def menuOpcoes():
     """
@@ -677,7 +727,7 @@ if logado == True:
 
         elif opcao == 11:
             # Configurar perfil
-            print("Em breve...")
+            edicaoCadastro()
             time.sleep(1)
 
         elif opcao == 12:
