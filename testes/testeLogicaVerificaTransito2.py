@@ -43,7 +43,7 @@ def arquivoJSON():
         json.dump(data, json_file, ensure_ascii=False)
 
 # Função para obter o estado do tráfego a partir do arquivo JSON
-def obterEstadoTragego():
+def obterEstadoTrafego():
     with open("testes/contagem_carros.json", "r", encoding='utf-8') as json_file:
         data = json.load(json_file)
         return data["estadoTrafego"]
@@ -58,7 +58,7 @@ while True:
     opcao = input("Escolha uma opção: ")
 
     if opcao == "1":
-        estadoAtual = obterEstadoTragego()
+        estadoAtual = obterEstadoTrafego()
         print(f"O estado atual do tráfego é: {estadoAtual}")
     elif opcao == "2":
         print("Encerrando o programa.")
