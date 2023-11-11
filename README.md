@@ -10,6 +10,10 @@ Projeto de Python criado para a Challenge da @FIAP em parceria com a IBM para as
 - Depois, no terminal, digite "pip install openrouteservice" ou "py -3.11 -m pip install openrouteservice" e aperte enter, aguardando a instalação;
 - E, por fim, no terminal, digite "pip install folium" ou "py -3.11 -m pip install folium" e aperte enter, aguardando a instalação.
 - Feito isso, para rodar o rpojeto em sua máquina, escolha o arquivo.py, que é o programa principal!
+- Com o programa rodando você poderá realizar seu cadastro que ficará salvo para acesso ao login ou escolher o email que foi utilizado de teste para a programação para testar o login direito, sendo os dados
+alucard@gmail.com
+1234
+- Aproveite!
 
 ## Quem compõe esse projeto?
 
