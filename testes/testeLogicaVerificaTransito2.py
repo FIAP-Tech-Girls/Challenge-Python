@@ -3,18 +3,9 @@ import random
 import time
 
 def contagemAleatoriaCarros():
-    """
-        Função para gerar uma contagem aleatória de carros, uma vez que não iríamos conseguir deixar
-        o ESP32 ligado 24 horas para nível de teste no programa em Python, então fizemos de uma forma 
-        aleatória que atualiza a cada 1 segundo.
-    """
-    return random.randint(0, 100)  # Ajuste o intervalo conforme necessário
-
+    return random.randint(0, 100)
 
 def estadoTrafego(carros):
-    """
-        Função para determinar o estado do tráfego com base na contagem de carros
-    """
     if 0 <= carros <= 20:
         return "Leve"
     elif 21 <= carros <= 50:
@@ -22,13 +13,7 @@ def estadoTrafego(carros):
     else:
         return "Intenso"
 
-
-def arquivoJSON():
-    """
-        Função para gerar um arquivo JSON simulando a contagem de carros. Esse arquivo JSON é atualizado
-        a cada vez que o usuário pede para visualizar qual o estado do trafégo mostrando o último antes de
-        ser atualizado.
-    """
+def arquivoJSON(local):
     carros = contagemAleatoriaCarros()
     estadoTrafegoAtual = estadoTrafego(carros)
 
@@ -36,13 +21,12 @@ def arquivoJSON():
         "horário": time.strftime("%Y-%m-%d %H:%M:%S"),
         "carros": carros,
         "estadoTrafego": estadoTrafegoAtual,
-        "local": "São Paulo"
+        "local": local
     }
 
     with open("testes/contagem_carros.json", "w", encoding='utf-8') as json_file:
         json.dump(data, json_file, ensure_ascii=False)
 
-# Função para obter o estado do tráfego a partir do arquivo JSON
 def obterEstadoTrafego():
     with open("testes/contagem_carros.json", "r", encoding='utf-8') as json_file:
         data = json.load(json_file)
@@ -50,7 +34,6 @@ def obterEstadoTrafego():
 
 # Loop principal para interação com o usuário
 while True:
-    arquivoJSON()  # Gera o arquivo antes de verificar o estado
 
     print("1. Verificar estado atual do tráfego")
     print("2. Sair")
@@ -58,8 +41,10 @@ while True:
     opcao = input("Escolha uma opção: ")
 
     if opcao == "1":
+        local = input("Digite o local que deseja verificar a situação do tráfego: ")
+        arquivoJSON(local)  # Gera o arquivo antes de verificar o estado
         estadoAtual = obterEstadoTrafego()
-        print(f"O estado atual do tráfego é: {estadoAtual}")
+        print(f"A situação do tráfego em {local} é: {estadoAtual}")
     elif opcao == "2":
         print("Encerrando o programa.")
         break

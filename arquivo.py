@@ -7,6 +7,7 @@ import openrouteservice # API para simulação de rotas
 import folium # para mostrar um mapa e não somente derivadas pro usuário
 import webbrowser # abrir o mapa automaticamente para o usuário, mesmmo que nesse momento seja somente com HTML
 import json # para abrir arquivos json externos da aplicação
+import random # simular contagem de carros de forma aleatória no programa 
 
 # Variáveis criadas anteriormente para inicialização do programa
 
@@ -433,6 +434,52 @@ def edicaoCadastro():
     with open('usuarios.json', 'w', encoding='utf-8') as arquivo: 
         json.dump(usuarios, arquivo, indent=4, ensure_ascii=False)
 
+def contagemAleatoriaCarros():
+    """
+        Função para gerar uma contagem aleatória de carros, uma vez que não iríamos conseguir deixar
+        o ESP32 ligado 24 horas para nível de teste no programa em Python, então fizemos de uma forma 
+        aleatória que atualiza a cada 1 segundo.
+    """
+    return random.randint(0, 100)  # Ajuste o intervalo conforme necessário
+
+def estadoTrafego(carros):
+    """
+        Função para determinar o estado do tráfego com base na contagem de carros
+    """
+    if 0 <= carros <= 20:
+        return "Leve"
+    elif 21 <= carros <= 50:
+        return "Moderado"
+    else:
+        return "Intenso"
+    
+def arquivoJSON(local):
+    """
+        Função para gerar um arquivo JSON simulando a contagem de carros. Esse arquivo JSON é atualizado
+        a cada vez que o usuário pede para visualizar qual o estado do trafégo mostrando o último antes de
+        ser atualizado.
+    """
+    carros = contagemAleatoriaCarros()
+    estadoTrafegoAtual = estadoTrafego(carros)
+
+    data = {
+        "horário": time.strftime("%Y-%m-%d %H:%M:%S"),
+        "carros": carros,
+        "estadoTrafego": estadoTrafegoAtual,
+        "local": local
+    }
+
+    with open("contagemCarros.json", "w", encoding='utf-8') as json_file:
+        json.dump(data, json_file, ensure_ascii=False)
+
+def obterEstadoTrafego():
+    """
+        Função para obter o estado do tráfego a partir do arquivo JSON
+    """
+    with open("contagemCarros.json", "r", encoding='utf-8') as json_file:
+        data = json.load(json_file)
+        return data["estadoTrafego"]
+
 def menuOpcoes():
     """
         Função criada para o menu de opções, para facilitar o tratamento de erros e deixar o código mais
@@ -658,8 +705,11 @@ if logado == True:
                 time.sleep(1)
 
         elif opcao == 4:
-            # Situação de determinada rota 
-            print("Em breve...")
+            # Situação de determinada rota -> simulação
+            local = input("Digite o local que deseja verificar a situação do tráfego: ")
+            arquivoJSON(local)  # Gera o arquivo antes de verificar o estado
+            estadoAtual = obterEstadoTrafego()
+            print(f"O estado atual do tráfego em {local} é: {estadoAtual}")
             time.sleep(1)
 
         elif opcao == 5:
